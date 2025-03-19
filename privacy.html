@@ -14,14 +14,11 @@
         .hero { padding: 50px; background-color: #333; color: white; }
         .cta-button { display: inline-block; padding: 10px 20px; background: #ff5733; color: white; text-decoration: none; border-radius: 5px; }
         .cta-button:hover { background: #c70039; }
-        .tool-list { display: flex; justify-content: center; gap: 20px; padding: 20px; }
-        .tool { padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
-        .fun-fact { font-size: 14px; color: #777; }
-        .battle-container { margin: 40px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
-        .battle-header { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
-        .battle { display: flex; justify-content: space-around; padding: 20px; }
-        .battle div { padding: 20px; background: #f8f9fa; border-radius: 10px; width: 40%; }
-        .vs { font-size: 32px; font-weight: bold; align-self: center; }
+        .contact-container, .privacy-container { margin: 40px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+        .contact-header, .privacy-header { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd; }
+        .contact-form button { background: #ff5733; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        .contact-form button:hover { background: #c70039; }
     </style>
 </head>
 <body>
@@ -41,30 +38,27 @@
         </ul>
     </nav>
 
-    <section id="battle-arena" class="battle-container">
-        <h2 class="battle-header">🥊 AI Tool Battle Arena</h2>
-        <div class="battle">
-            <div>
-                <h3>Jasper AI 🤖</h3>
-                <p>The ultimate AI content writer with creativity on steroids.</p>
-                <p class="fun-fact">Claim to Fame: Writes better clickbait than BuzzFeed.</p>
-            </div>
-            <div class="vs">VS</div>
-            <div>
-                <h3>ChatGPT 🤯</h3>
-                <p>The all-purpose AI chatbot that answers everything (even if it's wrong).</p>
-                <p class="fun-fact">Claim to Fame: Once tricked a human into believing it was their best friend.</p>
-            </div>
-        </div>
-        <button class="btn btn-danger">Vote for the Winner</button>
-    </section>
 
-    <section id="newsletter">
-        <h2>Stay Updated on AI Shenanigans</h2>
-        <p>We promise, no boring emails. Only AI tool memes and spicy updates.</p>
-        <form>
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit" class="btn btn-warning">Subscribe</button>
+    <section id="privacy" class="privacy-container">
+        <h2 class="privacy-header">🔒 Privacy Policy</h2>
+        <p>At AI Tool Fight Club, we take privacy as seriously as AI takes its training data. We don’t sell your info, we don’t store your deepest secrets, and we definitely don’t train AI models on your memes (yet). Here’s what you need to know:</p>
+        <ul>
+            <li>We collect minimal data (only what you voluntarily provide, like your email).</li>
+            <li>Your data is never shared, sold, or leaked into the AI matrix.</li>
+            <li>Cookies? Yes, we use them – but only for making your experience better, not for world domination.</li>
+            <li>Want out? You can always request to have your data deleted.</li>
+        </ul>
+        <p>For serious inquiries, please contact us through the <a href="#contact">Contact Page</a>.</p>
+    </section>
+  
+    <section id="contact" class="contact-container">
+        <h2 class="contact-header">📩 Contact & Sponsorship</h2>
+        <p>Want to sponsor a battle or get featured? Reach out and let's talk business (or memes). 😉</p>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
         </form>
     </section>
 
