@@ -83,14 +83,25 @@
             });
         });
     </script>
-        <nav>
-        <ul class="nav justify-content-center bg-dark p-3">
-            <li class="nav-item"><a class="nav-link text-white" href="battle-arena.html">Battle Arena</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="reviews.html">AI Tool Reviews</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="hall-of-fame.html">AI Hall of Fame</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="premium.html">Premium Membership</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="contact.html">Contact & Sponsorship</a></li>
-        </ul>
-    </nav>
+    <div class="cookie-banner" id="cookie-banner">
+        <p>We use cookies to enhance your experience. No, not the chocolate chip kind.</p>
+        <button onclick="acceptCookies()">Accept</button>
+        <button onclick="manageCookies()">Manage Settings</button>
+    </div>
+
+    <script>
+        function acceptCookies() {
+            document.getElementById("cookie-banner").style.display = "none";
+            localStorage.setItem("cookiesAccepted", "true");
+        }
+        function manageCookies() {
+            alert("To review or delete your data, please visit the Contact page and submit a request.");
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            if (localStorage.getItem("cookiesAccepted")) {
+                document.getElementById("cookie-banner").style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>
