@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hilarious AI tool comparisons that make marketing automation actually fun. Find the best AI tools without the boring jargon!">
+    <title>AI Tool Fight Club | The Funniest AI Tool Comparison</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script defer src="script.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; }
+        .hero { padding: 50px; background-color: #333; color: white; }
+        .cta-button { display: inline-block; padding: 10px 20px; background: #ff5733; color: white; text-decoration: none; border-radius: 5px; }
+        .cta-button:hover { background: #c70039; }
+        .tool-list { display: flex; justify-content: center; gap: 20px; padding: 20px; }
+        .tool { padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+        .fun-fact { font-size: 14px; color: #777; }
+        .battle-container { margin: 40px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+        .battle-header { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
+        .battle { display: flex; justify-content: space-around; padding: 20px; }
+        .battle div { padding: 20px; background: #f8f9fa; border-radius: 10px; width: 40%; }
+        .vs { font-size: 32px; font-weight: bold; align-self: center; }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>Welcome to AI Tool Fight Club 🥊</h1>
+        <p>Where AI tools battle it out so you don’t have to waste your time testing them.</p>
+        <a href="#tools" class="cta-button">Meet the Gladiators</a>
+    </header>
+    
+    <nav>
+        <ul class="nav justify-content-center bg-dark p-3">
+            <li class="nav-item"><a class="nav-link text-white" href="#battle-arena">Battle Arena</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="reviews.html">AI Tool Reviews</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="hall-of-fame.html">AI Hall of Fame</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="premium.html">Premium Membership</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="contact.html">Contact & Sponsorship</a></li>
+        </ul>
+    </nav>
+
+    <section id="battle-arena" class="battle-container">
+        <h2 class="battle-header">🥊 AI Tool Battle Arena</h2>
+        <div class="battle">
+            <div>
+                <h3>Jasper AI 🤖</h3>
+                <p>The ultimate AI content writer with creativity on steroids.</p>
+                <p class="fun-fact">Claim to Fame: Writes better clickbait than BuzzFeed.</p>
+            </div>
+            <div class="vs">VS</div>
+            <div>
+                <h3>ChatGPT 🤯</h3>
+                <p>The all-purpose AI chatbot that answers everything (even if it's wrong).</p>
+                <p class="fun-fact">Claim to Fame: Once tricked a human into believing it was their best friend.</p>
+            </div>
+        </div>
+        <button class="btn btn-danger">Vote for the Winner</button>
+    </section>
+
+    <section id="newsletter">
+        <h2>Stay Updated on AI Shenanigans</h2>
+        <p>We promise, no boring emails. Only AI tool memes and spicy updates.</p>
+        <form>
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-warning">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 AI Tool Fight Club. All Rights Reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        $(document).ready(function(){
+            $('.cta-button').hover(function(){
+                $(this).text('Click me!');
+            }, function(){
+                $(this).text('Meet the Gladiators');
+            });
+        });
+    </script>
+</body>
+</html>
