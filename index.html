@@ -1353,6 +1353,113 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // SVG icons for each tool
+            const svgIcons = {
+                "Claude 3.7 Sonnet": `<svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                    <g class="svg-brain">
+                        <!-- Brain Icon -->
+                        <path d="M50 20C37 20 25 32 25 45C25 58 37 70 50 70C63 70 75 58 75 45C75 32 63 20 50 20Z" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M35 45C35 40 40 35 45 35C50 35 55 40 55 45C55 50 60 55 65 55" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M65 45C65 40 60 35 55 35C50 35 45 40 45 45C45 50 40 55 35 55" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M50 35V55" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M35 45H65" fill="none" stroke="#ff5733" stroke-width="2"/>
+                    </g>
+                    <text x="50" y="85" text-anchor="middle" fill="#ff5733" font-weight="bold">3.7</text>
+                </svg>`,
+                
+                "GPT-4o": `<svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                    <g>
+                        <!-- Multimodal Icon - Text, Image, Audio -->
+                        <rect x="25" y="30" width="20" height="5" fill="#ff5733" rx="2"/>
+                        <rect x="25" y="40" width="15" height="5" fill="#ff5733" rx="2"/>
+                        <rect x="25" y="50" width="18" height="5" fill="#ff5733" rx="2"/>
+                        <!-- Image -->
+                        <rect x="50" y="30" width="25" height="25" fill="none" stroke="#ff5733" stroke-width="2" rx="2"/>
+                        <circle cx="56" cy="37" r="2" fill="#ff5733"/>
+                        <path d="M50 55L58 45L65 50L75 40" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <!-- Audio waves -->
+                        <path d="M35 65C40 60 40 70 45 65" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M50 65C55 58 55 72 60 65" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M65 65C70 60 70 70 75 65" fill="none" stroke="#ff5733" stroke-width="2"/>
+                    </g>
+                    <text x="50" y="85" text-anchor="middle" fill="#ff5733" font-weight="bold">4o</text>
+                </svg>`,
+                
+                "OpenAI Sora": `<svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="40" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                    <g>
+                        <!-- Video Camera -->
+                        <rect x="25" y="35" width="35" height="25" fill="none" stroke="#ff5733" stroke-width="2" rx="2" class="svg-camera"/>
+                        <circle cx="42" cy="47" r="8" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <circle cx="42" cy="47" r="3" fill="#ff5733"/>
+                        <path d="M60 40L70 35V55L60 50" fill="#ff5733"/>
+                        
+                        <!-- Film strip notches -->
+                        <rect x="25" y="31" width="4" height="4" fill="#ff5733"/>
+                        <rect x="35" y="31" width="4" height="4" fill="#ff5733"/>
+                        <rect x="45" y="31" width="4" height="4" fill="#ff5733"/>
+                        <rect x="55" y="31" width="4" height="4" fill="#ff5733"/>
+                        
+                        <rect x="25" y="60" width="4" height="4" fill="#ff5733"/>
+                        <rect x="35" y="60" width="4" height="4" fill="#ff5733"/>
+                        <rect x="45" y="60" width="4" height="4" fill="#ff5733"/>
+                        <rect x="55" y="60" width="4" height="4" fill="#ff5733"/>
+                    </g>
+                </svg>`,
+                
+                "Runway Gen-3": `<svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="40" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                    <g>
+                        <!-- Video/Runway Icon -->
+                        <rect x="25" y="30" width="35" height="25" fill="none" stroke="#ff5733" stroke-width="2" rx="2"/>
+                        <path d="M60 35L75 30V55L60 50" fill="#ff5733"/>
+                        
+                        <!-- Runway Pattern -->
+                        <path d="M25 60H75" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M30 65H70" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M35 70H65" stroke="#ff5733" stroke-width="2"/>
+                        
+                        <!-- Number 3 -->
+                        <path d="M40 25C45 25 48 27 45 30C48 33 45 35 40 35" stroke="#ff5733" stroke-width="2"/>
+                    </g>
+                </svg>`,
+                
+                "Gemini Ultra": `<svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="40" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                    <g>
+                        <!-- Crystal/Diamond Shape -->
+                        <path d="M50 20L70 40L50 80L30 40Z" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M30 40H70" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M40 40L50 80L60 40" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        
+                        <!-- G for Google -->
+                        <path d="M50 50C53 50 55 48 55 45C55 42 53 40 50 40C47 40 45 42 45 45H50" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        
+                        <!-- Sparkles -->
+                        <path d="M40 30L42 32M60 30L58 32M40 60L42 58M60 60L58 58" stroke="#ff5733" stroke-width="2"/>
+                    </g>
+                </svg>`,
+                
+                "Claude 3 Opus": `<svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="40" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                    <g>
+                        <!-- Brain with musical elements -->
+                        <path d="M50 20C37 20 25 32 25 45C25 58 37 70 50 70C63 70 75 58 75 45C75 32 63 20 50 20Z" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        <path d="M35 45H65" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        
+                        <!-- Musical notes -->
+                        <circle cx="35" cy="55" r="4" fill="#ff5733"/>
+                        <path d="M35 55V35" stroke="#ff5733" stroke-width="2"/>
+                        <circle cx="65" cy="55" r="4" fill="#ff5733"/>
+                        <path d="M65 55V35" stroke="#ff5733" stroke-width="2"/>
+                        
+                        <text x="50" y="85" text-anchor="middle" fill="#ff5733" font-weight="bold">OPUS</text>
+                    </g>
+                </svg>`
+            };
+            
             // Battle system with tool details
             const battleData = [
                 {
@@ -1443,6 +1550,28 @@
                 tool2Fact.textContent = battle.tool2.fact;
                 tool2VoteBtn.textContent = 'Vote for ' + battle.tool2.name;
                 tool2Vote.textContent = '0 votes';
+                
+                // Update SVG icons
+                const tool1Container = document.getElementById('tool1');
+                const tool2Container = document.getElementById('tool2');
+                
+                // Replace tool 1 SVG
+                const oldSvg1 = tool1Container.querySelector('svg');
+                if (oldSvg1 && svgIcons[battle.tool1.name]) {
+                    const tempDiv1 = document.createElement('div');
+                    tempDiv1.innerHTML = svgIcons[battle.tool1.name];
+                    const newSvg1 = tempDiv1.firstChild;
+                    tool1Container.replaceChild(newSvg1, oldSvg1);
+                }
+                
+                // Replace tool 2 SVG
+                const oldSvg2 = tool2Container.querySelector('svg');
+                if (oldSvg2 && svgIcons[battle.tool2.name]) {
+                    const tempDiv2 = document.createElement('div');
+                    tempDiv2.innerHTML = svgIcons[battle.tool2.name];
+                    const newSvg2 = tempDiv2.firstChild;
+                    tool2Container.replaceChild(newSvg2, oldSvg2);
+                }
                 
                 // Reset battle state
                 document.getElementById('tool1').classList.remove('selected');
