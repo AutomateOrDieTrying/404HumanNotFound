@@ -20,7 +20,7 @@
             padding: 80px 20px; 
             background-color: #1e1e1e; 
             color: white; 
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/api/placeholder/1400/600');
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="600" viewBox="0 0 1400 600"><rect width="1400" height="600" fill="%23333"/><g fill="%23ff5733" opacity="0.2"><circle cx="200" cy="150" r="80"/><circle cx="1100" cy="450" r="120"/><polygon points="600,50 700,200 500,200"/><rect x="900" y="100" width="150" height="150"/><polygon points="300,400 450,350 400,500"/><rect x="800" y="350" width="180" height="100"/></g></svg>');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -608,12 +608,13 @@
             font-weight: bold;
             font-size: 1.2rem;
         }
-        .leaderboard-tool img {
+        .leaderboard-tool svg {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             margin-right: 15px;
             border: 2px solid #ff5733;
+            background-color: #1e1e1e;
         }
         .leaderboard-score {
             font-weight: bold;
@@ -787,6 +788,43 @@
         .feature-limited {
             color: #FFC107;
         }
+        
+        /* SVG animation */
+        .svg-icon {
+            transition: all 0.3s ease;
+        }
+        .svg-icon:hover .svg-brain {
+            animation: pulse 1.5s infinite;
+        }
+        .svg-icon:hover .svg-gear {
+            animation: rotate 3s linear infinite;
+        }
+        .svg-icon:hover .svg-camera {
+            animation: flash 2s infinite;
+        }
+        .svg-icon:hover .svg-palette {
+            animation: colorshift 3s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes flash {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        @keyframes colorshift {
+            0% { fill: #ff5733; }
+            33% { fill: #33a1ff; }
+            66% { fill: #33ff57; }
+            100% { fill: #ff5733; }
+        }
     </style>
 </head>
 <body>
@@ -829,7 +867,19 @@
             <h2 class="section-header">🥊 TODAY'S MAIN EVENT 🥊</h2>
             <div class="battle current-battle">
                 <div class="battle-card" id="tool1">
-                    <img src="/api/placeholder/150/150" alt="Claude AI" class="tool-image" id="tool1-img">
+                    <!-- Claude SVG Icon -->
+                    <svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                        <g class="svg-brain">
+                            <!-- Brain Icon -->
+                            <path d="M50 20C37 20 25 32 25 45C25 58 37 70 50 70C63 70 75 58 75 45C75 32 63 20 50 20Z" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M35 45C35 40 40 35 45 35C50 35 55 40 55 45C55 50 60 55 65 55" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M65 45C65 40 60 35 55 35C50 35 45 40 45 45C45 50 40 55 35 55" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M50 35V55" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M35 45H65" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        </g>
+                        <text x="50" y="85" text-anchor="middle" fill="#ff5733" font-weight="bold">3.7</text>
+                    </svg>
                     <h3 id="tool1-name" class="tool-name">Claude 3.7 Sonnet 🧠</h3>
                     <p id="tool1-desc" class="tool-desc">The AI assistant with a PhD in conversation and reasoning.</p>
                     <div class="rating">★★★★★</div>
@@ -839,8 +889,26 @@
                 </div>
                 <div class="vs">VS</div>
                 <div class="battle-card" id="tool2">
-                    <img src="/api/placeholder/150/150" alt="GPT-4.5" class="tool-image" id="tool2-img">
-                    <h3 id="tool2-name" class="tool-name">GPT-4.5 🤯</h3>
+                    <!-- GPT-4o SVG Icon -->
+                    <svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                        <g>
+                            <!-- Multimodal Icon - Text, Image, Audio -->
+                            <rect x="25" y="30" width="20" height="5" fill="#ff5733" rx="2"/>
+                            <rect x="25" y="40" width="15" height="5" fill="#ff5733" rx="2"/>
+                            <rect x="25" y="50" width="18" height="5" fill="#ff5733" rx="2"/>
+                            <!-- Image -->
+                            <rect x="50" y="30" width="25" height="25" fill="none" stroke="#ff5733" stroke-width="2" rx="2"/>
+                            <circle cx="56" cy="37" r="2" fill="#ff5733"/>
+                            <path d="M50 55L58 45L65 50L75 40" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <!-- Audio waves -->
+                            <path d="M35 65C40 60 40 70 45 65" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M50 65C55 58 55 72 60 65" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M65 65C70 60 70 70 75 65" fill="none" stroke="#ff5733" stroke-width="2"/>
+                        </g>
+                        <text x="50" y="85" text-anchor="middle" fill="#ff5733" font-weight="bold">4o</text>
+                    </svg>
+                    <h3 id="tool2-name" class="tool-name">GPT-4o 🤯</h3>
                     <p id="tool2-desc" class="tool-desc">OpenAI's multimodal powerhouse that processes text, images, and audio in real-time.</p>
                     <div class="rating">★★★★★</div>
                     <p class="fun-fact" id="tool2-fact">Claim to Fame: Passes the Turing test while writing poetry in 15 languages.</p>
@@ -860,7 +928,28 @@
             <h2 class="section-header">🔥 UPCOMING BATTLES 🔥</h2>
             <div class="tool-list">
                 <div class="tool">
-                    <img src="/api/placeholder/80/80" alt="OpenAI Sora" class="tool-image">
+                    <!-- OpenAI Sora SVG Icon -->
+                    <svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="40" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                        <g>
+                            <!-- Video Camera -->
+                            <rect x="25" y="35" width="35" height="25" fill="none" stroke="#ff5733" stroke-width="2" rx="2" class="svg-camera"/>
+                            <circle cx="42" cy="47" r="8" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <circle cx="42" cy="47" r="3" fill="#ff5733"/>
+                            <path d="M60 40L70 35V55L60 50" fill="#ff5733"/>
+                            
+                            <!-- Film strip notches -->
+                            <rect x="25" y="31" width="4" height="4" fill="#ff5733"/>
+                            <rect x="35" y="31" width="4" height="4" fill="#ff5733"/>
+                            <rect x="45" y="31" width="4" height="4" fill="#ff5733"/>
+                            <rect x="55" y="31" width="4" height="4" fill="#ff5733"/>
+                            
+                            <rect x="25" y="60" width="4" height="4" fill="#ff5733"/>
+                            <rect x="35" y="60" width="4" height="4" fill="#ff5733"/>
+                            <rect x="45" y="60" width="4" height="4" fill="#ff5733"/>
+                            <rect x="55" y="60" width="4" height="4" fill="#ff5733"/>
+                        </g>
+                    </svg>
                     <h3>OpenAI Sora 🎬</h3>
                     <p>The video AI that turns prompts into cinematic masterpieces.</p>
                     <div class="rating">★★★★★</div>
@@ -868,7 +957,21 @@
                     <button class="vote-button">Coming Soon</button>
                 </div>
                 <div class="tool">
-                    <img src="/api/placeholder/80/80" alt="Midjourney v6" class="tool-image">
+                    <!-- Midjourney SVG Icon -->
+                    <svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="40" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                        <g>
+                            <!-- Artist Palette -->
+                            <path d="M30 50C30 37 40 30 50 30C60 30 70 37 70 45C70 53 65 60 55 60C52 60 50 58 50 55C50 52 52 50 55 50C58 50 60 48 60 45C60 42 55 40 50 40C45 40 40 45 40 50C40 60 45 65 55 70C45 70 30 63 30 50Z" fill="#ff5733" class="svg-palette"/>
+                            
+                            <!-- Paint Dots -->
+                            <circle cx="35" cy="45" r="4" fill="#fff"/>
+                            <circle cx="45" cy="35" r="4" fill="#fff"/>
+                            <circle cx="55" cy="35" r="4" fill="#fff"/>
+                            <circle cx="65" cy="45" r="4" fill="#fff"/>
+                            <circle cx="65" cy="55" r="4" fill="#fff"/>
+                        </g>
+                    </svg>
                     <h3>Midjourney v6 🎨</h3>
                     <p>The AI artist that creates photorealistic masterpieces from text.</p>
                     <div class="rating">★★★★☆</div>
@@ -876,7 +979,22 @@
                     <button class="vote-button">Coming Soon</button>
                 </div>
                 <div class="tool">
-                    <img src="/api/placeholder/80/80" alt="Gemini Ultra" class="tool-image">
+                    <!-- Google Gemini Ultra SVG Icon -->
+                    <svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="40" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                        <g>
+                            <!-- Crystal/Diamond Shape -->
+                            <path d="M50 20L70 40L50 80L30 40Z" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M30 40H70" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M40 40L50 80L60 40" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            
+                            <!-- G for Google -->
+                            <path d="M50 50C53 50 55 48 55 45C55 42 53 40 50 40C47 40 45 42 45 45H50" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            
+                            <!-- Sparkles -->
+                            <path d="M40 30L42 32M60 30L58 32M40 60L42 58M60 60L58 58" stroke="#ff5733" stroke-width="2"/>
+                        </g>
+                    </svg>
                     <h3>Google Gemini Ultra 🔮</h3>
                     <p>Google's most powerful AI that aced college-level exams.</p>
                     <div class="rating">★★★★☆</div>
@@ -884,7 +1002,29 @@
                     <button class="vote-button">Coming Soon</button>
                 </div>
                 <div class="tool">
-                    <img src="/api/placeholder/80/80" alt="GitHub Copilot X" class="tool-image">
+                    <!-- GitHub Copilot SVG Icon -->
+                    <svg class="tool-image svg-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="40" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                        <g>
+                            <!-- Code Brackets -->
+                            <path d="M30 40L20 50L30 60" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M70 40L80 50L70 60" fill="none" stroke="#ff5733" stroke-width="2"/>
+                            
+                            <!-- Pilot Hat -->
+                            <path d="M35 35H65L60 25H40L35 35Z" fill="#ff5733"/>
+                            <rect x="35" y="35" width="30" height="5" fill="#ff5733"/>
+                            
+                            <!-- Code Lines -->
+                            <path d="M35 50H65" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M40 55H60" stroke="#ff5733" stroke-width="2"/>
+                            <path d="M45 60H55" stroke="#ff5733" stroke-width="2"/>
+                            
+                            <!-- Rotating Gear -->
+                            <path d="M50 70L48 68L50 66L52 68Z" fill="#ff5733" class="svg-gear"/>
+                            <path d="M55 70L57 68L55 66L53 68Z" fill="#ff5733" class="svg-gear"/>
+                            <path d="M45 70L43 68L45 66L47 68Z" fill="#ff5733" class="svg-gear"/>
+                        </g>
+                    </svg>
                     <h3>GitHub Copilot X 👨‍💻</h3>
                     <p>The advanced AI coding assistant that can build entire applications.</p>
                     <div class="rating">★★★★☆</div>
@@ -986,7 +1126,19 @@
                 <div class="leaderboard-item">
                     <div class="leaderboard-rank">1</div>
                     <div class="leaderboard-tool">
-                        <img src="/api/placeholder/40/40" alt="GPT-4o">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                            <g>
+                                <!-- Multimodal Icon - Text, Image, Audio (Simplified) -->
+                                <rect x="10" y="12" width="8" height="2" fill="#ff5733" rx="1"/>
+                                <rect x="10" y="16" width="6" height="2" fill="#ff5733" rx="1"/>
+                                <rect x="10" y="20" width="7" height="2" fill="#ff5733" rx="1"/>
+                                <rect x="20" y="12" width="10" height="10" fill="none" stroke="#ff5733" stroke-width="1" rx="1"/>
+                                <path d="M14 26C16 24 16 28 18 26" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M20 26C22 23 22 29 24 26" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M26 26C28 24 28 28 30 26" fill="none" stroke="#ff5733" stroke-width="1"/>
+                            </g>
+                        </svg>
                         GPT-4o
                     </div>
                     <div class="leaderboard-score">964</div>
@@ -994,7 +1146,17 @@
                 <div class="leaderboard-item">
                     <div class="leaderboard-rank">2</div>
                     <div class="leaderboard-tool">
-                        <img src="/api/placeholder/40/40" alt="Claude 3.7 Sonnet">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                            <g>
+                                <!-- Brain Icon (Simplified) -->
+                                <path d="M20 8C14 8 10 14 10 19C10 24 14 30 20 30C26 30 30 24 30 19C30 14 26 8 20 8Z" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M14 19C14 16 16 14 19 14C21 14 23 16 23 19C23 21 25 23 27 23" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M26 19C26 16 24 14 21 14C19 14 17 16 17 19C17 21 15 23 13 23" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M20 14V23" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M14 19H26" fill="none" stroke="#ff5733" stroke-width="1"/>
+                            </g>
+                        </svg>
                         Claude 3.7 Sonnet
                     </div>
                     <div class="leaderboard-score">941</div>
@@ -1002,7 +1164,21 @@
                 <div class="leaderboard-item">
                     <div class="leaderboard-rank">3</div>
                     <div class="leaderboard-tool">
-                        <img src="/api/placeholder/40/40" alt="OpenAI Sora">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                            <g>
+                                <!-- Video Camera (Simplified) -->
+                                <rect x="10" y="14" width="14" height="10" fill="none" stroke="#ff5733" stroke-width="1" rx="1"/>
+                                <circle cx="17" cy="19" r="3" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <circle cx="17" cy="19" r="1" fill="#ff5733"/>
+                                <path d="M24 16L28 14V22L24 20" fill="#ff5733"/>
+                                <!-- Film strip notches -->
+                                <rect x="10" y="12" width="2" height="2" fill="#ff5733"/>
+                                <rect x="14" y="12" width="2" height="2" fill="#ff5733"/>
+                                <rect x="18" y="12" width="2" height="2" fill="#ff5733"/>
+                                <rect x="22" y="12" width="2" height="2" fill="#ff5733"/>
+                            </g>
+                        </svg>
                         OpenAI Sora
                     </div>
                     <div class="leaderboard-score">897</div>
@@ -1010,7 +1186,17 @@
                 <div class="leaderboard-item">
                     <div class="leaderboard-rank">4</div>
                     <div class="leaderboard-tool">
-                        <img src="/api/placeholder/40/40" alt="Gemini Ultra">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                            <g>
+                                <!-- Crystal/Diamond (Simplified) -->
+                                <path d="M20 8L28 16L20 32L12 16Z" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M12 16H28" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M16 16L20 32L24 16" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <!-- G for Google -->
+                                <path d="M20 20C21 20 22 19 22 18C22 17 21 16 20 16C19 16 18 17 18 18H20" fill="none" stroke="#ff5733" stroke-width="1"/>
+                            </g>
+                        </svg>
                         Google Gemini Ultra
                     </div>
                     <div class="leaderboard-score">854</div>
@@ -1018,7 +1204,18 @@
                 <div class="leaderboard-item">
                     <div class="leaderboard-rank">5</div>
                     <div class="leaderboard-tool">
-                        <img src="/api/placeholder/40/40" alt="Midjourney v6">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                            <g>
+                                <!-- Artist Palette (Simplified) -->
+                                <path d="M12 20C12 14 16 12 20 12C24 12 28 14 28 18C28 22 26 24 22 24C21 24 20 23 20 22C20 21 21 20 22 20C23 20 24 19 24 18C24 17 22 16 20 16C18 16 16 18 16 20C16 24 18 26 22 28C18 28 12 25 12 20Z" fill="#ff5733"/>
+                                <!-- Paint Dots -->
+                                <circle cx="14" cy="18" r="1.5" fill="#fff"/>
+                                <circle cx="18" cy="14" r="1.5" fill="#fff"/>
+                                <circle cx="22" cy="14" r="1.5" fill="#fff"/>
+                                <circle cx="26" cy="18" r="1.5" fill="#fff"/>
+                            </g>
+                        </svg>
                         Midjourney v6
                     </div>
                     <div class="leaderboard-score">826</div>
@@ -1026,7 +1223,19 @@
                 <div class="leaderboard-item">
                     <div class="leaderboard-rank">6</div>
                     <div class="leaderboard-tool">
-                        <img src="/api/placeholder/40/40" alt="Claude 3 Opus">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                            <g>
+                                <!-- Brain with musical elements -->
+                                <path d="M20 8C14 8 10 14 10 19C10 24 14 30 20 30C26 30 30 24 30 19C30 14 26 8 20 8Z" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M15 19H25" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <!-- Musical notes -->
+                                <circle cx="15" cy="24" r="1.5" fill="#ff5733"/>
+                                <path d="M15 24V16" stroke="#ff5733" stroke-width="1"/>
+                                <circle cx="25" cy="23" r="1.5" fill="#ff5733"/>
+                                <path d="M25 23V15" stroke="#ff5733" stroke-width="1"/>
+                            </g>
+                        </svg>
                         Claude 3 Opus
                     </div>
                     <div class="leaderboard-score">788</div>
@@ -1034,7 +1243,21 @@
                 <div class="leaderboard-item">
                     <div class="leaderboard-rank">7</div>
                     <div class="leaderboard-tool">
-                        <img src="/api/placeholder/40/40" alt="GitHub Copilot X">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                            <g>
+                                <!-- Code Brackets (Simplified) -->
+                                <path d="M12 16L8 20L12 24" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M28 16L32 20L28 24" fill="none" stroke="#ff5733" stroke-width="1"/>
+                                <!-- Pilot Hat -->
+                                <path d="M14 14H26L24 10H16L14 14Z" fill="#ff5733"/>
+                                <rect x="14" y="14" width="12" height="2" fill="#ff5733"/>
+                                <!-- Code Lines -->
+                                <path d="M14 20H26" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M16 22H24" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M18 24H22" stroke="#ff5733" stroke-width="1"/>
+                            </g>
+                        </svg>
                         GitHub Copilot X
                     </div>
                     <div class="leaderboard-score">742</div>
@@ -1042,7 +1265,20 @@
                 <div class="leaderboard-item">
                     <div class="leaderboard-rank">8</div>
                     <div class="leaderboard-tool">
-                        <img src="/api/placeholder/40/40" alt="Runway Gen-3">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#1e1e1e" stroke="#ff5733" stroke-width="2"/>
+                            <g>
+                                <!-- Video/Runway Icon -->
+                                <rect x="10" y="14" width="14" height="10" fill="none" stroke="#ff5733" stroke-width="1" rx="1"/>
+                                <path d="M24 16L28 14V22L24 20" fill="#ff5733"/>
+                                <!-- Runway Pattern -->
+                                <path d="M12 26H28" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M14 28H26" stroke="#ff5733" stroke-width="1"/>
+                                <path d="M16 30H24" stroke="#ff5733" stroke-width="1"/>
+                                <!-- Number 3 -->
+                                <path d="M17 12C19 12 20 13 19 14C20 15 19 16 17 16" stroke="#ff5733" stroke-width="1"/>
+                            </g>
+                        </svg>
                         Runway Gen-3
                     </div>
                     <div class="leaderboard-score">715</div>
@@ -1114,34 +1350,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Claude Demo Modal -->
-    <div id="claude-modal" class="demo-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Claude 3.7 Sonnet Demo</h2>
-            <div class="tool-demo">
-                <h4>Experience Claude's Reasoning</h4>
-                <textarea class="task-input" id="claude-input" rows="4" placeholder="Enter a complex reasoning question or writing task..."></textarea>
-                <button type="button" id="run-claude" class="task-button">Generate Response</button>
-                <div id="claude-demo-output" class="task-output" style="display: none;"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- GPT Demo Modal -->
-    <div id="gpt-modal" class="demo-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>GPT-4o Demo</h2>
-            <div class="tool-demo">
-                <h4>Test GPT-4o's Capabilities</h4>
-                <textarea class="task-input" id="gpt-input" rows="4" placeholder="Ask anything or request content generation..."></textarea>
-                <button type="button" id="run-gpt" class="task-button">Generate Response</button>
-                <div id="gpt-demo-output" class="task-output" style="display: none;"></div>
-            </div>
-        </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
