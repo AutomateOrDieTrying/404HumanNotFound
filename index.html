@@ -3,437 +3,1484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hilarious AI tool comparisons that make marketing automation actually fun. Find the best AI tools without the boring jargon!">
-    <title>AI Tool Fight Club | The Funniest AI Tool Comparison</title>
+    <meta name="description" content="The ultimate AI tool battle royale. Watch cutting-edge AI models duke it out while you vote for the champions.">
+    <title>AI Tool Fight Club | The Ultimate AI Showdown</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <!-- Load jQuery before using it -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8373330648701304"
-     crossorigin="anonymous"></script>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; }
-        .hero { padding: 50px; background-color: #333; color: white; }
-        .cta-button { display: inline-block; padding: 10px 20px; background: #ff5733; color: white; text-decoration: none; border-radius: 5px; }
-        .cta-button:hover { background: #c70039; }
-        .tool-list { display: flex; justify-content: center; gap: 20px; padding: 20px; flex-wrap: wrap; }
-        .tool { padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); width: 300px; }
-        .fun-fact { font-size: 14px; color: #777; }
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background-color: #121212; 
+            color: #f8f9fa;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .hero { 
+            padding: 80px 20px; 
+            background-color: #1e1e1e; 
+            color: white; 
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/api/placeholder/1400/600');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff5733 0%, rgba(0,0,0,0) 70%);
+            opacity: 0.3;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px rgba(255, 87, 51, 0.7);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .cta-button { 
+            display: inline-block; 
+            padding: 15px 30px; 
+            background: #ff5733; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border: none;
+            box-shadow: 0 4px 0 #c70039;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover::after {
+            left: 100%;
+        }
+        .cta-button:hover { 
+            background: #e64a19; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #c70039;
+            color: white;
+            text-decoration: none;
+        }
+        .cta-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #c70039;
+        }
+        
+        .navbar-custom {
+            background-color: #1a1a1a;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-link {
+            color: #f8f9fa !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 15px !important;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background: #ff5733;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+        .nav-link:hover {
+            color: #ff5733 !important;
+            transform: translateY(-2px);
+        }
+        
+        .battle-container, .reviews-container, .tool-container, .rankings-container { 
+            margin: 60px auto; 
+            padding: 30px; 
+            background-color: #1e1e1e; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3); 
+            max-width: 1100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .battle-container::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ff5733, transparent 70%);
+            opacity: 0.05;
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+        .section-header { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin-bottom: 30px; 
+            color: #f8f9fa;
+            text-transform: uppercase;
+            display: inline-block;
+            position: relative;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 4px;
+            background: #ff5733;
+        }
+        
+        .battle { 
+            display: flex; 
+            flex-wrap: wrap;
+            justify-content: space-around; 
+            padding: 20px; 
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .battle-card { 
+            padding: 25px; 
+            background: #252525; 
+            border-radius: 10px; 
+            width: 40%; 
+            min-width: 300px;
+            position: relative;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            border: 1px solid #333;
+        }
+        .battle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: #ff5733;
+        }
+        .battle-card.selected {
+            border: 2px solid #ff5733;
+            background-color: #2a2a2a;
+            box-shadow: 0 0 20px rgba(255, 87, 51, 0.3);
+        }
+        .vs { 
+            font-size: 2.5rem; 
+            font-weight: 900; 
+            align-self: center;
+            background: linear-gradient(45deg, #ff5733, #ff8c33);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background-color: #333;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            margin: 20px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(255, 87, 51, 0.5);
+        }
+        .vs::before {
+            content: '';
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background: #1a1a1a;
+            z-index: -1;
+        }
+        
+        .tool-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid #ff5733;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            object-fit: cover;
+        }
+        .battle-card:hover .tool-image {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 87, 51, 0.4);
+        }
+        
+        .tool-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #f8f9fa;
+        }
+        .tool-desc {
+            color: #aaa;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .rating {
+            font-size: 1.5rem;
+            color: #ffc107;
+            margin: 15px 0;
+            letter-spacing: 2px;
+        }
+        
+        .fun-fact { 
+            font-size: 1rem; 
+            color: #888; 
+            font-style: italic;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+            border-left: 3px solid #ff5733;
+        }
+        
+        .vote-button {
+            background: linear-gradient(45deg, #ff5733, #ff8c33);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        .vote-button::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 300px;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(45deg);
+            top: -100px;
+            left: -100px;
+            transition: all 0.3s ease;
+        }
+        .vote-button:hover::after {
+            left: 120%;
+        }
+        .vote-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(255, 87, 51, 0.3);
+        }
+        
+        .vote-counter {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 15px;
+            color: #ddd;
+            background-color: #2a2a2a;
+            padding: 8px 15px;
+            border-radius: 25px;
+            display: inline-block;
+        }
+        
+        .battle-result {
+            background-color: #252525;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+        .battle-result::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff5733, #ff8c33);
+        }
+        #battle-winner {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: #fff;
+        }
+        
+        .next-battle {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 25px 0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .next-battle:hover {
+            background-color: #444;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .game-stats {
+            background-color: #252525;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+        .game-stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff5733, #ff8c33);
+        }
+        .game-stats h3 {
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        .stat-value {
+            font-weight: 700;
+            color: #ff5733;
+        }
+        
+        .tool-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px;
+        }
+        .tool {
+            padding: 25px;
+            background-color: #252525;
+            border-radius: 10px;
+            width: 320px;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .tool:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: #ff5733;
+        }
+        
+        .review {
+            text-align: left;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ff5733;
+            background-color: #252525;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .review:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .review h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #f8f9fa;
+        }
+        
+        .newsletter-section {
+            background-color: #1a1a1a;
+            padding: 60px 20px;
+            margin-top: 60px;
+            border-top: 5px solid #ff5733;
+            position: relative;
+            overflow: hidden;
+        }
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ff5733, transparent 70%);
+            opacity: 0.05;
+            top: -100px;
+            left: -100px;
+            border-radius: 50%;
+        }
+        .newsletter-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .email-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            position: relative;
+        }
+        .email-input {
+            flex-grow: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            background-color: #252525;
+            color: #f8f9fa;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .email-input:focus {
+            background-color: #333;
+            box-shadow: 0 0 0 2px rgba(255, 87, 51, 0.3);
+        }
+        .subscribe-btn {
+            background: linear-gradient(45deg, #ff5733, #ff8c33);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .subscribe-btn:hover {
+            background: linear-gradient(45deg, #e64a19, #ff7f00);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+            padding: 40px 20px;
+            margin-top: 60px;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff5733, transparent);
+        }
+        footer a {
+            color: #ff5733;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        footer a:hover {
+            color: #ff8c33;
+            text-decoration: none;
+        }
         
         /* Modal styles */
-        .demo-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
-        .modal-content { background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 10px; }
-        .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .close-modal:hover { color: black; }
+        .demo-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #1e1e1e;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #333;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            position: relative;
+            animation: modalIn 0.4s ease-out;
+        }
+        @keyframes modalIn {
+            from {opacity: 0; transform: translateY(-30px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .close-modal:hover {
+            color: #ff5733;
+            transform: rotate(90deg);
+        }
         
-        /* Tool Demo Styles */
-        .tool-demo { padding: 20px; }
-        .jasper-demo input, .jasper-demo select, .jasper-demo textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        .jasper-demo button { background-color: #4e73df; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
-        .jasper-output { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 15px; text-align: left; }
+        /* Leaderboard */
+        .leaderboard {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #252525;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+        .leaderboard-item:hover {
+            background-color: #2a2a2a;
+            transform: translateX(5px) scale(1.02);
+            border-color: #ff5733;
+        }
+        .leaderboard-rank {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #ff5733;
+            width: 40px;
+            text-align: center;
+        }
+        .leaderboard-tool {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            text-align: left;
+            padding-left: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .leaderboard-tool img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid #ff5733;
+        }
+        .leaderboard-score {
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff5733, #ff8c33);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            min-width: 70px;
+            text-align: center;
+        }
         
-        .surfer-demo .keyword-input { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        .surfer-demo button { background-color: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
-        .keyword-results { margin-top: 15px; text-align: left; }
-        .keyword-item { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #eee; }
-        .difficulty { width: 100px; height: 10px; background-color: #e9ecef; border-radius: 5px; overflow: hidden; }
-        .difficulty-fill { height: 100%; background-color: #28a745; }
+        /* Try It Yourself Modal */
+        .try-yourself {
+            background-color: #252525;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        .try-yourself h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #f8f9fa;
+            border-bottom: 2px solid #ff5733;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .task-input {
+            width: 100%;
+            padding: 12px;
+            background-color: #2a2a2a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: #f8f9fa;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+        .task-input:focus {
+            border-color: #ff5733;
+            outline: none;
+        }
+        .task-button {
+            background: linear-gradient(45deg, #ff5733, #ff8c33);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .task-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 87, 51, 0.3);
+        }
+        .task-output {
+            background-color: #2a2a2a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            color: #ddd;
+            font-family: 'Courier New', monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
         
-        .adzooma-demo .ad-form { margin-bottom: 20px; }
-        .adzooma-demo input, .adzooma-demo select { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        .adzooma-demo button { background-color: #dc3545; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
-        .ad-preview { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 15px; text-align: left; }
-        .ad-metrics { display: flex; justify-content: space-around; margin-top: 15px; }
-        .metric { text-align: center; }
-        .metric-value { font-size: 24px; font-weight: bold; color: #dc3545; }
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+        }
+        .loading div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #ff5733;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        .loading div:nth-child(1) {
+            left: 8px;
+            animation: loading1 0.6s infinite;
+        }
+        .loading div:nth-child(2) {
+            left: 8px;
+            animation: loading2 0.6s infinite;
+        }
+        .loading div:nth-child(3) {
+            left: 32px;
+            animation: loading2 0.6s infinite;
+        }
+        .loading div:nth-child(4) {
+            left: 56px;
+            animation: loading3 0.6s infinite;
+        }
+        @keyframes loading1 {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        @keyframes loading3 {
+            0% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+        @keyframes loading2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(24px, 0); }
+        }
         
-        /* Cookie banner */
-        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #333; color: white; padding: 10px; text-align: center; }
-        .cookie-banner button { background: #ff5733; color: white; border: none; padding: 5px 10px; margin: 0 5px; cursor: pointer; }
+        /* Random fact container */
+        .random-fact-container {
+            margin-top: 20px;
+        }
+        .random-fact {
+            padding: 15px;
+            background-color: #252525;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-left: 3px solid #ff5733;
+            text-align: left;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            color: #f8f9fa;
+        }
+        .comparison-table th {
+            background-color: #333;
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #ff5733;
+        }
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        .comparison-table tr:hover td {
+            background-color: #2a2a2a;
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .feature-available {
+            color: #4CAF50;
+            font-weight: 700;
+        }
+        .feature-unavailable {
+            color: #f44336;
+        }
+        .feature-limited {
+            color: #FFC107;
+        }
     </style>
 </head>
 <body>
     <header class="hero">
-        <h1>Welcome to AI Tool Fight Club 🥊</h1>
-        <p>Where AI tools battle it out so you don't have to waste your time testing them.</p>
-        <a href="#tools" class="cta-button">Meet the Gladiators</a>
+        <div class="hero-content">
+            <h1>AI Tool Fight Club 🥊</h1>
+            <p class="lead">Where cutting-edge AI tools battle for supremacy in the digital arena. No mercy. No marketing jargon. Just pure AI combat.</p>
+            <h2>Rule #1: You MUST talk about AI Tool Fight Club</h2>
+            <a href="#battle-arena" class="cta-button" id="enterArena">Enter The Arena</a>
+        </div>
     </header>
     
-    <nav>
-        <ul class="nav justify-content-center bg-dark p-3">
-            <li class="nav-item"><a class="nav-link text-white" href="battle-arena.html">Battle Arena</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="reviews.html">AI Tool Reviews</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="hall-of-fame.html">AI Hall of Fame</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="premium.html">Premium Membership</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="contact.html">Contact & Sponsorship</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top mb-4">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#battle-arena">Battle Arena</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#upcoming-battles">Upcoming Battles</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">Performance Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#leaderboard">Power Rankings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#try-yourself">Try It Yourself</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#newsletter">Inside Access</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <section id="tools">
-        <h2>Which AI Marketing Tool Reigns Supreme?</h2>
-        <div class="tool-list">
-            <div class="tool">
-                <h3>Jasper AI 🤖</h3>
-                <p>Writes better than your intern... and never asks for coffee breaks.</p>
-                <p class="fun-fact">Fun Fact: Jasper once wrote a love letter so good, it got proposed to.</p>
-                <a href="#" class="btn btn-primary demo-btn" data-tool="jasper">Try Jasper AI</a>
-            </div>
-            <div class="tool">
-                <h3>Surfer SEO 🌊</h3>
-                <p>Finds keywords faster than your boss can say "optimize it."</p>
-                <p class="fun-fact">Fun Fact: Google once asked Surfer SEO for ranking advice.</p>
-                <a href="#" class="btn btn-success demo-btn" data-tool="surfer">Get Surfer SEO</a>
-            </div>
-            <div class="tool">
-                <h3>Adzooma 🚀</h3>
-                <p>Manages ads so well, Facebook actually likes it.</p>
-                <p class="fun-fact">Fun Fact: Adzooma once lowered an ad budget... and increased ROI.</p>
-                <a href="#" class="btn btn-danger demo-btn" data-tool="adzooma">Start with Adzooma</a>
-            </div>
+    <div class="container">
+        <div class="game-stats">
+            <h3>Your Battle Stats</h3>
+            <p>Battles Witnessed: <span id="battles-count" class="stat-value">0</span> | Votes Cast: <span id="votes-cast" class="stat-value">0</span></p>
+            <p>Battle Score: <span id="battle-score" class="stat-value">0</span> points</p>
+            <div id="random-fact-container" class="random-fact-container"></div>
         </div>
-    </section>
-
-    <!-- Jasper AI Demo Modal -->
-    <div id="jasper-modal" class="demo-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Jasper AI Demo</h2>
-            <div class="tool-demo jasper-demo">
-                <h4>Generate Marketing Copy</h4>
-                <form id="jasper-form">
-                    <div class="mb-3">
-                        <label for="content-type" class="form-label">Content Type:</label>
-                        <select id="content-type" class="form-select">
-                            <option value="social">Social Media Post</option>
-                            <option value="email">Email Subject Line</option>
-                            <option value="blog">Blog Introduction</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="tone" class="form-label">Tone:</label>
-                        <select id="tone" class="form-select">
-                            <option value="professional">Professional</option>
-                            <option value="casual">Casual</option>
-                            <option value="humorous">Humorous</option>
-                            <option value="persuasive">Persuasive</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="product" class="form-label">Product/Service:</label>
-                        <input type="text" id="product" class="form-control" placeholder="e.g., Fitness App, Coffee Subscription">
-                    </div>
-                    <div class="mb-3">
-                        <label for="audience" class="form-label">Target Audience:</label>
-                        <input type="text" id="audience" class="form-control" placeholder="e.g., Fitness enthusiasts, Coffee lovers">
-                    </div>
-                    <button type="button" id="generate-jasper" class="btn btn-primary">Generate Content</button>
-                </form>
-                <div id="jasper-output" class="jasper-output mt-4" style="display: none;">
-                    <h5>Generated Content:</h5>
-                    <div id="generated-content"></div>
+        
+        <section id="battle-arena" class="battle-container">
+            <h2 class="section-header">🥊 TODAY'S MAIN EVENT 🥊</h2>
+            <div class="battle current-battle">
+                <div class="battle-card" id="tool1">
+                    <img src="/api/placeholder/150/150" alt="Claude AI" class="tool-image" id="tool1-img">
+                    <h3 id="tool1-name" class="tool-name">Claude 3.7 Sonnet 🧠</h3>
+                    <p id="tool1-desc" class="tool-desc">The AI assistant with a PhD in conversation and reasoning.</p>
+                    <div class="rating">★★★★★</div>
+                    <p class="fun-fact" id="tool1-fact">Claim to Fame: Makes philosophers question their careers.</p>
+                    <button class="vote-button" id="vote-button-1">Vote for Claude 3.7</button>
+                    <div class="vote-counter" id="tool1-votes">0 votes</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="battle-card" id="tool2">
+                    <img src="/api/placeholder/150/150" alt="GPT-4.5" class="tool-image" id="tool2-img">
+                    <h3 id="tool2-name" class="tool-name">GPT-4.5 🤯</h3>
+                    <p id="tool2-desc" class="tool-desc">OpenAI's multimodal powerhouse that processes text, images, and audio in real-time.</p>
+                    <div class="rating">★★★★★</div>
+                    <p class="fun-fact" id="tool2-fact">Claim to Fame: Passes the Turing test while writing poetry in 15 languages.</p>
+                    <button class="vote-button" id="vote-button-2">Vote for GPT-4o</button>
+                    <div class="vote-counter" id="tool2-votes">0 votes</div>
                 </div>
             </div>
-        </div>
+            <div class="battle-result" style="display: none;">
+                <h3>Battle Result:</h3>
+                <p id="battle-winner"></p>
+                <div class="rating">★★★★★</div>
+            </div>
+            <button class="next-battle" id="next-battle-button" style="display: none;">Next Battle</button>
+        </section>
+
+        <section id="upcoming-battles" class="battle-container">
+            <h2 class="section-header">🔥 UPCOMING BATTLES 🔥</h2>
+            <div class="tool-list">
+                <div class="tool">
+                    <img src="/api/placeholder/80/80" alt="OpenAI Sora" class="tool-image">
+                    <h3>OpenAI Sora 🎬</h3>
+                    <p>The video AI that turns prompts into cinematic masterpieces.</p>
+                    <div class="rating">★★★★★</div>
+                    <p class="fun-fact">Hollywood directors are nervously checking their contracts.</p>
+                    <button class="vote-button">Coming Soon</button>
+                </div>
+                <div class="tool">
+                    <img src="/api/placeholder/80/80" alt="Midjourney v6" class="tool-image">
+                    <h3>Midjourney v6 🎨</h3>
+                    <p>The AI artist that creates photorealistic masterpieces from text.</p>
+                    <div class="rating">★★★★☆</div>
+                    <p class="fun-fact">Can create images so realistic that photographers are updating their résumés.</p>
+                    <button class="vote-button">Coming Soon</button>
+                </div>
+                <div class="tool">
+                    <img src="/api/placeholder/80/80" alt="Gemini Ultra" class="tool-image">
+                    <h3>Google Gemini Ultra 🔮</h3>
+                    <p>Google's most powerful AI that aced college-level exams.</p>
+                    <div class="rating">★★★★☆</div>
+                    <p class="fun-fact">So advanced it could do your taxes and write your thesis simultaneously.</p>
+                    <button class="vote-button">Coming Soon</button>
+                </div>
+                <div class="tool">
+                    <img src="/api/placeholder/80/80" alt="GitHub Copilot X" class="tool-image">
+                    <h3>GitHub Copilot X 👨‍💻</h3>
+                    <p>The advanced AI coding assistant that can build entire applications.</p>
+                    <div class="rating">★★★★☆</div>
+                    <p class="fun-fact">Started suggesting code before developers even knew they needed it.</p>
+                    <button class="vote-button">Coming Soon</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="compare" class="battle-container">
+            <h2 class="section-header">⚔️ HEAD-TO-HEAD COMPARISON ⚔️</h2>
+            <p>How do today's leading AI combatants stack up against each other?</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Claude 3.7 Sonnet</th>
+                        <th>GPT-4o</th>
+                        <th>Gemini Ultra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Reasoning Capabilities</td>
+                        <td class="feature-available">Outstanding</td>
+                        <td class="feature-available">Excellent</td>
+                        <td class="feature-limited">Very Good</td>
+                    </tr>
+                    <tr>
+                        <td>Multimodal Processing</td>
+                        <td class="feature-limited">Limited</td>
+                        <td class="feature-available">Full Support</td>
+                        <td class="feature-available">Full Support</td>
+                    </tr>
+                    <tr>
+                        <td>Context Window</td>
+                        <td class="feature-available">200K tokens</td>
+                        <td class="feature-limited">128K tokens</td>
+                        <td class="feature-limited">100K tokens</td>
+                    </tr>
+                    <tr>
+                        <td>Response Time</td>
+                        <td class="feature-limited">Medium</td>
+                        <td class="feature-available">Very Fast</td>
+                        <td class="feature-limited">Medium</td>
+                    </tr>
+                    <tr>
+                        <td>Code Generation</td>
+                        <td class="feature-limited">Good</td>
+                        <td class="feature-available">Excellent</td>
+                        <td class="feature-limited">Good</td>
+                    </tr>
+                    <tr>
+                        <td>Creative Writing</td>
+                        <td class="feature-available">Excellent</td>
+                        <td class="feature-available">Excellent</td>
+                        <td class="feature-limited">Very Good</td>
+                    </tr>
+                    <tr>
+                        <td>API Access</td>
+                        <td class="feature-available">Yes</td>
+                        <td class="feature-available">Yes</td>
+                        <td class="feature-limited">Limited</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="reviews" class="reviews-container">
+            <h2 class="section-header">📊 PERFORMANCE REVIEWS 📊</h2>
+            <div class="review">
+                <h3>Claude 3.7 Sonnet: The Philosopher King of AI</h3>
+                <div class="rating">★★★★★</div>
+                <p><strong>Strengths:</strong> Claude 3.7 Sonnet brings unparalleled logical reasoning and nuanced conversation to the AI arena. Its ability to understand complex prompts and provide thoughtful, well-structured responses makes it the go-to model for tasks requiring deep understanding and clear explanations.</p>
+                <p><strong>Weaknesses:</strong> While exceptional at text, Claude still lags behind in multimodal capabilities, particularly with image generation and complex visual understanding. Response speed can be somewhat slower than competitors when tackling intensive reasoning tasks.</p>
+                <p><strong>Verdict:</strong> The ideal AI for academic research, content creation, and situations where precision and nuance matter more than speed. Its massive context window of 200K tokens gives it a significant edge for document analysis and long-form conversation.</p>
+            </div>
+            <div class="review">
+                <h3>GPT-4o: The Swiss Army Knife That Actually Works</h3>
+                <div class="rating">★★★★★</div>
+                <p><strong>Strengths:</strong> GPT-4o represents a quantum leap in multimodal capabilities, seamlessly processing text, images, audio, and video in real-time. Its blazing fast response time and impressive contextual understanding make it incredibly versatile for almost any task.</p>
+                <p><strong>Weaknesses:</strong> Can occasionally hallucinate more confidently than Claude, especially when pushed outside its knowledge boundaries. High operational costs have limited widespread adoption for some enterprise use cases.</p>
+                <p><strong>Verdict:</strong> The most well-rounded AI in the current landscape, offering best-in-class performance across nearly every dimension. Particularly shines in creative tasks, code generation, and situations requiring rapid, multimodal interaction.</p>
+            </div>
+            <div class="review">
+                <h3>OpenAI Sora: Redefining Video Generation</h3>
+                <div class="rating">★★★★★</div>
+                <p><strong>Strengths:</strong> Creates astonishingly realistic videos from text prompts with coherent physics, consistent characters, and cinematic quality previously thought impossible. Its understanding of motion, depth, and visual continuity showcases an almost intuitive grasp of the physical world.</p>
+                <p><strong>Weaknesses:</strong> Limited public access due to safety concerns and potential for misuse. Still struggles with longer narratives and highly complex scenes with multiple interactions.</p>
+                <p><strong>Verdict:</strong> A revolution in digital content creation that will transform industries from advertising to education. While not a general-purpose AI like Claude or GPT, it represents the most impressive specialized AI tool of 2025.</p>
+            </div>
+        </section>
+
+        <section id="leaderboard" class="rankings-container">
+            <h2 class="section-header">🏆 POWER RANKINGS 🏆</h2>
+            <p>Based on performance metrics, user votes, and expert evaluations</p>
+            <div class="leaderboard">
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank">1</div>
+                    <div class="leaderboard-tool">
+                        <img src="/api/placeholder/40/40" alt="GPT-4o">
+                        GPT-4o
+                    </div>
+                    <div class="leaderboard-score">964</div>
+                </div>
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank">2</div>
+                    <div class="leaderboard-tool">
+                        <img src="/api/placeholder/40/40" alt="Claude 3.7 Sonnet">
+                        Claude 3.7 Sonnet
+                    </div>
+                    <div class="leaderboard-score">941</div>
+                </div>
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank">3</div>
+                    <div class="leaderboard-tool">
+                        <img src="/api/placeholder/40/40" alt="OpenAI Sora">
+                        OpenAI Sora
+                    </div>
+                    <div class="leaderboard-score">897</div>
+                </div>
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank">4</div>
+                    <div class="leaderboard-tool">
+                        <img src="/api/placeholder/40/40" alt="Gemini Ultra">
+                        Google Gemini Ultra
+                    </div>
+                    <div class="leaderboard-score">854</div>
+                </div>
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank">5</div>
+                    <div class="leaderboard-tool">
+                        <img src="/api/placeholder/40/40" alt="Midjourney v6">
+                        Midjourney v6
+                    </div>
+                    <div class="leaderboard-score">826</div>
+                </div>
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank">6</div>
+                    <div class="leaderboard-tool">
+                        <img src="/api/placeholder/40/40" alt="Claude 3 Opus">
+                        Claude 3 Opus
+                    </div>
+                    <div class="leaderboard-score">788</div>
+                </div>
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank">7</div>
+                    <div class="leaderboard-tool">
+                        <img src="/api/placeholder/40/40" alt="GitHub Copilot X">
+                        GitHub Copilot X
+                    </div>
+                    <div class="leaderboard-score">742</div>
+                </div>
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank">8</div>
+                    <div class="leaderboard-tool">
+                        <img src="/api/placeholder/40/40" alt="Runway Gen-3">
+                        Runway Gen-3
+                    </div>
+                    <div class="leaderboard-score">715</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="try-yourself" class="battle-container">
+            <h2 class="section-header">🧪 TRY IT YOURSELF 🧪</h2>
+            <p>Put the AI champions to the test with your own prompts and see which one delivers the knockout punch!</p>
+            
+            <div class="try-yourself">
+                <h3>Challenge the Models</h3>
+                <textarea class="task-input" id="challenge-prompt" rows="4" placeholder="Enter your prompt challenge here (e.g., 'Explain quantum computing to a 5-year-old')"></textarea>
+                <div class="d-flex justify-content-between mb-3">
+                    <button class="task-button" id="challenge-claude">Ask Claude 3.7</button>
+                    <button class="task-button" id="challenge-gpt">Ask GPT-4o</button>
+                </div>
+                
+                <div id="loading-container" style="display: none;">
+                    <div class="loading">
+                        <div></div><div></div><div></div><div></div>
+                    </div>
+                    <p>AI is thinking...</p>
+                </div>
+                
+                <div id="claude-response" style="display: none;">
+                    <h4>Claude 3.7 Sonnet Response:</h4>
+                    <div class="task-output" id="claude-output"></div>
+                </div>
+                
+                <div id="gpt-response" style="display: none;">
+                    <h4>GPT-4o Response:</h4>
+                    <div class="task-output" id="gpt-output"></div>
+                </div>
+                
+                <div id="response-voting" style="display: none; text-align: center; margin-top: 30px;">
+                    <h4>Which response was better?</h4>
+                    <button class="vote-button" id="vote-claude">Vote Claude</button>
+                    <button class="vote-button" id="vote-gpt" style="margin-left: 20px;">Vote GPT</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="newsletter" class="newsletter-section">
+            <h2>GET INSIDE ACCESS</h2>
+            <p>Join our underground network of AI enthusiasts for exclusive battles, early access to new models, and insider analysis.</p>
+            <form id="newsletter-form" class="email-form">
+                <input type="email" class="email-input" placeholder="Your email address" required>
+                <button type="submit" class="subscribe-btn">JOIN NOW</button>
+            </form>
+            <p id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></p>
+        </section>
     </div>
-
-    <!-- Surfer SEO Demo Modal -->
-    <div id="surfer-modal" class="demo-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Surfer SEO Demo</h2>
-            <div class="tool-demo surfer-demo">
-                <h4>Keyword Research</h4>
-                <div class="mb-3">
-                    <label for="keyword-input" class="form-label">Enter your main keyword:</label>
-                    <input type="text" id="keyword-input" class="keyword-input form-control" placeholder="e.g., digital marketing strategies">
-                </div>
-                <button type="button" id="search-keywords" class="btn btn-success">Find Keywords</button>
-                <div id="keyword-results" class="keyword-results mt-4" style="display: none;">
-                    <h5>Related Keywords:</h5>
-                    <div class="keyword-list">
-                        <!-- Keywords will be added here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Adzooma Demo Modal -->
-    <div id="adzooma-modal" class="demo-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Adzooma Demo</h2>
-            <div class="tool-demo adzooma-demo">
-                <h4>Ad Campaign Optimizer</h4>
-                <div class="ad-form">
-                    <div class="mb-3">
-                        <label for="ad-platform" class="form-label">Platform:</label>
-                        <select id="ad-platform" class="form-select">
-                            <option value="facebook">Facebook Ads</option>
-                            <option value="google">Google Ads</option>
-                            <option value="instagram">Instagram Ads</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="ad-headline" class="form-label">Ad Headline:</label>
-                        <input type="text" id="ad-headline" class="form-control" placeholder="e.g., Limited Time Offer!">
-                    </div>
-                    <div class="mb-3">
-                        <label for="ad-description" class="form-label">Ad Description:</label>
-                        <input type="text" id="ad-description" class="form-control" placeholder="e.g., Get 20% off your first purchase.">
-                    </div>
-                    <div class="mb-3">
-                        <label for="ad-budget" class="form-label">Daily Budget ($):</label>
-                        <input type="number" id="ad-budget" class="form-control" min="1" value="50">
-                    </div>
-                    <button type="button" id="optimize-ad" class="btn btn-danger">Optimize Campaign</button>
-                </div>
-                <div id="ad-preview" class="ad-preview mt-4" style="display: none;">
-                    <h5>Ad Preview:</h5>
-                    <div id="ad-content"></div>
-                    <div class="ad-metrics mt-3">
-                        <div class="metric">
-                            <div class="metric-label">Estimated CTR</div>
-                            <div class="metric-value" id="ctr-value">0%</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-label">Estimated CPC</div>
-                            <div class="metric-value" id="cpc-value">$0.00</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-label">Optimization Score</div>
-                            <div class="metric-value" id="opt-score">0</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section id="newsletter">
-        <h2>Stay Updated on AI Shenanigans</h2>
-        <p>We promise, no boring emails. Only AI tool memes and spicy updates.</p>
-        <form>
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit" class="btn btn-warning">Subscribe</button>
-        </form>
-    </section>
 
     <footer>
-        <p>&copy; 2025 AI Tool Fight Club. All Rights Reserved.</p>
-        <p><a href="privacy.html">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>AI Tool Fight Club</h3>
+                    <p>Comparing cutting-edge AI models so you don't have to sacrifice your GPU.</p>
+                    <p>&copy; 2025 AI Tool Fight Club. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Quick Links</h3>
+                    <p><a href="#">About Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                    <p><a href="#">Sponsor a Battle</a> | <a href="#">Submit an AI</a> | <a href="#">Contact</a></p>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <div class="cookie-banner" id="cookie-banner">
-        <p>We use cookies to enhance your experience. No, not the chocolate chip kind.</p>
-        <button onclick="acceptCookies()">Accept</button>
-        <button onclick="manageCookies()">Manage Settings</button>
+    <!-- Claude Demo Modal -->
+    <div id="claude-modal" class="demo-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Claude 3.7 Sonnet Demo</h2>
+            <div class="tool-demo">
+                <h4>Experience Claude's Reasoning</h4>
+                <textarea class="task-input" id="claude-input" rows="4" placeholder="Enter a complex reasoning question or writing task..."></textarea>
+                <button type="button" id="run-claude" class="task-button">Generate Response</button>
+                <div id="claude-demo-output" class="task-output" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GPT Demo Modal -->
+    <div id="gpt-modal" class="demo-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>GPT-4o Demo</h2>
+            <div class="tool-demo">
+                <h4>Test GPT-4o's Capabilities</h4>
+                <textarea class="task-input" id="gpt-input" rows="4" placeholder="Ask anything or request content generation..."></textarea>
+                <button type="button" id="run-gpt" class="task-button">Generate Response</button>
+                <div id="gpt-demo-output" class="task-output" style="display: none;"></div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Wait for document to be fully loaded before running jQuery code
         document.addEventListener('DOMContentLoaded', function() {
-            // CTA button hover effect
-            $('.cta-button').hover(function(){
-                $(this).text('Click me!');
-            }, function(){
-                $(this).text('Meet the Gladiators');
-            });
-            
-            // Demo button click handlers
-            $('.demo-btn').click(function(e){
-                e.preventDefault();
-                const tool = $(this).data('tool');
-                $(`#${tool}-modal`).css('display', 'block');
-            });
-            
-            // Close modal when clicking on X
-            $('.close-modal').click(function(){
-                $(this).closest('.demo-modal').css('display', 'none');
-            });
-            
-            // Close modal when clicking outside of it
-            $(window).click(function(e){
-                if($(e.target).hasClass('demo-modal')){
-                    $('.demo-modal').css('display', 'none');
-                }
-            });
-            
-            // Jasper AI demo
-            $('#generate-jasper').click(function(){
-                const contentType = $('#content-type').val();
-                const tone = $('#tone').val();
-                const product = $('#product').val() || 'AI Marketing Tool';
-                const audience = $('#audience').val() || 'Marketing Professionals';
-                
-                let generatedContent = '';
-                
-                // Generate content based on inputs
-                if(contentType === 'social') {
-                    if(tone === 'humorous') {
-                        generatedContent = `Just found out my ${product} can do my job better than me. Should I be worried or just make it bring me coffee? 🤔 #AITakeover #${product.replace(/\s+/g, '')}`;
-                    } else if(tone === 'professional') {
-                        generatedContent = `Revolutionize your marketing strategy with our cutting-edge ${product}. Designed specifically for ${audience} who demand excellence. Learn more at our website. #MarketingInnovation`;
-                    } else if(tone === 'casual') {
-                        generatedContent = `Hey ${audience}! Check out how this ${product} saved us hours of work last week. Game-changer! 🙌 #WorkSmarter`;
-                    } else { // persuasive
-                        generatedContent = `Stop wasting time on manual marketing tasks! Our ${product} delivers 3x better results in half the time. ${audience} are already seeing the difference. Are you being left behind? #UpgradeNow`;
+            // Battle system with tool details
+            const battleData = [
+                {
+                    tool1: {
+                        name: "Claude 3.7 Sonnet", 
+                        emoji: "🧠",
+                        description: "The AI assistant with a PhD in conversation and reasoning.",
+                        fact: "Makes philosophers question their careers."
+                    },
+                    tool2: {
+                        name: "GPT-4o", 
+                        emoji: "🤯",
+                        description: "OpenAI's multimodal powerhouse that processes text, images, and audio in real-time.",
+                        fact: "Passes the Turing test while writing poetry in 15 languages."
                     }
-                } else if(contentType === 'email') {
-                    if(tone === 'humorous') {
-                        generatedContent = `This ${product} made our intern obsolete (but don't tell HR)`;
-                    } else if(tone === 'professional') {
-                        generatedContent = `Introducing: Revolutionary ${product} for Discerning ${audience}`;
-                    } else if(tone === 'casual') {
-                        generatedContent = `Hey! This ${product} is actually worth checking out...`;
-                    } else { // persuasive
-                        generatedContent = `Last chance: 50% off ${product} that's changing how ${audience} work`;
+                },
+                {
+                    tool1: {
+                        name: "OpenAI Sora", 
+                        emoji: "🎬",
+                        description: "The video AI that turns prompts into cinematic masterpieces.",
+                        fact: "Hollywood directors are nervously checking their contracts."
+                    },
+                    tool2: {
+                        name: "Runway Gen-3", 
+                        emoji: "🎥",
+                        description: "The AI video generator redefining special effects and storytelling.",
+                        fact: "Can create a sci-fi epic with better effects than a 90s blockbuster budget."
                     }
-                } else { // blog
-                    if(tone === 'humorous') {
-                        generatedContent = `In a world where marketing feels like herding cats while juggling flaming torches, the ${product} swoops in like a caffeinated superhero. If you're among the exhausted ${audience} who've had enough of spreadsheet-induced eye twitches, this blog post might just save your sanity (and possibly your job).`;
-                    } else if(tone === 'professional') {
-                        generatedContent = `The landscape of digital marketing continues to evolve at an unprecedented pace. For ${audience} seeking to maintain a competitive edge, leveraging innovative solutions like the ${product} has become not merely advantageous but essential. This comprehensive analysis explores how this cutting-edge technology is transforming industry standards and delivering measurable results.`;
-                    } else if(tone === 'casual') {
-                        generatedContent = `Hey there! If you're like most ${audience} I talk to, you're probably spending way too much time on tasks that could be automated. That's where ${product} comes in – it's been a total game-changer for our team. Let me walk you through how it works and why we're such fans.`;
-                    } else { // persuasive
-                        generatedContent = `Imagine cutting your marketing workload in half while doubling your results. This isn't just a fantasy – it's exactly what ${audience} are experiencing with the revolutionary ${product}. In this post, we'll reveal the three proprietary features that make this tool indispensable and why your competitors hope you never discover it.`;
+                },
+                {
+                    tool1: {
+                        name: "Gemini Ultra", 
+                        emoji: "🔮",
+                        description: "Google's most powerful AI that aced college-level exams.",
+                        fact: "So advanced it could do your taxes and write your thesis simultaneously."
+                    },
+                    tool2: {
+                        name: "Claude 3 Opus", 
+                        emoji: "🎭",
+                        description: "The enterprise-grade AI that reasons like a philosopher and codes like a genius.",
+                        fact: "Has better reasoning skills than most humans with advanced degrees."
                     }
                 }
-                
-                // Display the generated content
-                $('#generated-content').text(generatedContent);
-                $('#jasper-output').show();
-            });
+            ];
             
-            // Surfer SEO demo
-            $('#search-keywords').click(function(){
-                const mainKeyword = $('#keyword-input').val() || 'digital marketing';
-                const keywordResults = $('#keyword-results');
-                const keywordList = keywordResults.find('.keyword-list');
-                
-                // Clear previous results
-                keywordList.empty();
-                
-                // Generate fake keyword results based on input
-                const keywords = [
-                    { keyword: mainKeyword + ' strategies', volume: Math.floor(Math.random() * 5000) + 1000, difficulty: Math.random() * 100 },
-                    { keyword: 'best ' + mainKeyword + ' tools', volume: Math.floor(Math.random() * 3000) + 500, difficulty: Math.random() * 100 },
-                    { keyword: mainKeyword + ' for beginners', volume: Math.floor(Math.random() * 2000) + 300, difficulty: Math.random() * 100 },
-                    { keyword: 'how to learn ' + mainKeyword, volume: Math.floor(Math.random() * 1500) + 200, difficulty: Math.random() * 100 },
-                    { keyword: mainKeyword + ' courses', volume: Math.floor(Math.random() * 1000) + 100, difficulty: Math.random() * 100 },
-                    { keyword: mainKeyword + ' certification', volume: Math.floor(Math.random() * 800) + 50, difficulty: Math.random() * 100 },
-                    { keyword: mainKeyword + ' examples', volume: Math.floor(Math.random() * 700) + 30, difficulty: Math.random() * 100 }
-                ];
-                
-                // Add keywords to the list
-                keywords.forEach(item => {
-                    const difficultyLevel = Math.floor(item.difficulty);
-                    let difficultyColor = '#28a745'; // Green
-                    
-                    if(difficultyLevel > 70) {
-                        difficultyColor = '#dc3545'; // Red
-                    } else if(difficultyLevel > 40) {
-                        difficultyColor = '#ffc107'; // Yellow
-                    }
-                    
-                    const keywordItem = `
-                        <div class="keyword-item">
-                            <div>${item.keyword}</div>
-                            <div>Volume: ${item.volume}</div>
-                            <div>
-                                <div>Difficulty: ${difficultyLevel}%</div>
-                                <div class="difficulty">
-                                    <div class="difficulty-fill" style="width: ${difficultyLevel}%; background-color: ${difficultyColor};"></div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    
-                    keywordList.append(keywordItem);
-                });
-                
-                keywordResults.show();
-            });
+            // Game state
+            let currentBattleIndex = 0;
+            let votesCount = 0;
+            let battleScore = 0;
+            let battlesWitnessed = 0;
+            let hasVoted = false;
             
-            // Adzooma demo
-            $('#optimize-ad').click(function(){
-                const platform = $('#ad-platform').val();
-                const headline = $('#ad-headline').val() || 'Limited Time Offer!';
-                const description = $('#ad-description').val() || 'Get 20% off your first purchase.';
-                const budget = $('#ad-budget').val() || 50;
+            // Game elements
+            const tool1VoteBtn = document.getElementById('vote-button-1');
+            const tool2VoteBtn = document.getElementById('vote-button-2');
+            const nextBattleBtn = document.getElementById('next-battle-button');
+            const tool1Vote = document.getElementById('tool1-votes');
+            const tool2Vote = document.getElementById('tool2-votes');
+            const battleResult = document.querySelector('.battle-result');
+            const battleWinner = document.getElementById('battle-winner');
+            const battlesCountEl = document.getElementById('battles-count');
+            const votesCountEl = document.getElementById('votes-cast');
+            const battleScoreEl = document.getElementById('battle-score');
+            
+            // Tool elements
+            const tool1Name = document.getElementById('tool1-name');
+            const tool1Desc = document.getElementById('tool1-desc');
+            const tool1Fact = document.getElementById('tool1-fact');
+            const tool2Name = document.getElementById('tool2-name');
+            const tool2Desc = document.getElementById('tool2-desc');
+            const tool2Fact = document.getElementById('tool2-fact');
+            
+            // Update the battle display with current battle data
+            function updateBattle() {
+                const battle = battleData[currentBattleIndex];
                 
-                let platformName = 'Facebook';
-                if(platform === 'google') platformName = 'Google';
-                if(platform === 'instagram') platformName = 'Instagram';
+                // Update tool 1
+                tool1Name.textContent = battle.tool1.name + ' ' + battle.tool1.emoji;
+                tool1Desc.textContent = battle.tool1.description;
+                tool1Fact.textContent = battle.tool1.fact;
+                tool1VoteBtn.textContent = 'Vote for ' + battle.tool1.name;
+                tool1Vote.textContent = '0 votes';
                 
-                // Generate ad preview
-                const adContent = `
-                    <div class="card">
-                        <div class="card-header">
-                            <strong>${platformName} Ad Preview</strong>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">${headline}</h5>
-                            <p class="card-text">${description}</p>
-                            <button class="btn btn-sm btn-primary">Learn More</button>
-                        </div>
-                    </div>
-                `;
+                // Update tool 2
+                tool2Name.textContent = battle.tool2.name + ' ' + battle.tool2.emoji;
+                tool2Desc.textContent = battle.tool2.description;
+                tool2Fact.textContent = battle.tool2.fact;
+                tool2VoteBtn.textContent = 'Vote for ' + battle.tool2.name;
+                tool2Vote.textContent = '0 votes';
                 
-                $('#ad-content').html(adContent);
-                
-                // Calculate mock metrics based on inputs
-                const headlineLength = headline.length;
-                const descLength = description.length;
-                const budgetFactor = budget / 50;
-                
-                // CTR calculation - better for succinct headlines and reasonable budgets
-                let ctr = 2 + (Math.random() * 1.5);
-                if(headlineLength < 30) ctr += 0.8;
-                if(descLength > 80 && descLength < 140) ctr += 0.7;
-                if(budgetFactor > 1.5) ctr += 0.5;
-                ctr = Math.min(ctr, 7.5); // Cap at 7.5%
-                
-                // CPC calculation - better for targeted platforms and reasonable budgets
-                let cpc = 0.5 + (Math.random() * 0.3);
-                if(platform === 'google') cpc += 0.4;
-                if(budgetFactor > 2) cpc += 0.3;
-                cpc = Math.min(cpc, 2.5); // Cap at $2.50
-                
-                // Optimization score - combination of factors
-                let optScore = 65 + (Math.random() * 15);
-                if(headlineLength > 20 && headlineLength < 40) optScore += 5;
-                if(descLength > 60 && descLength < 120) optScore += 5;
-                if(headline.includes('!') || headline.includes('?')) optScore += 3;
-                if(description.includes('off') || description.includes('%')) optScore += 3;
-                optScore = Math.min(optScore, 98); // Cap at 98
-                
-                // Display metrics
-                $('#ctr-value').text(ctr.toFixed(1) + '%');
-                $('#cpc-value').text('$' + cpc.toFixed(2));
-                $('#opt-score').text(Math.round(optScore) + '/100');
-                
-                // Show the ad preview
-                $('#ad-preview').show();
-            });
-        });
-        
-        // Cookie functions - keep these outside the DOMContentLoaded event
-        function acceptCookies() {
-            document.getElementById("cookie-banner").style.display = "none";
-            localStorage.setItem("cookiesAccepted", "true");
-        }
-        
-        function manageCookies() {
-            alert("To review or delete your data, please visit the Contact page and submit a request.");
-        }
-        
-        // Check cookies on page load
-        document.addEventListener("DOMContentLoaded", function() {
-            if (localStorage.getItem("cookiesAccepted")) {
-                document.getElementById("cookie-banner").style.display = "none";
+                // Reset battle state
+                document.getElementById('tool1').classList.remove('selected');
+                document.getElementById('tool2').classList.remove('selected');
+                battleResult.style.display = 'none';
+                nextBattleBtn.style.display = 'none';
+                hasVoted = false;
             }
+            
+            // Tool 1 vote button click handler
+            tool1VoteBtn.addEventListener('click', function() {
+                if (hasVoted) return;
+                
+                // Generate random vote count (1-5)
+                const votes = Math.floor(Math.random() * 5) + 3;
+                tool1Vote.textContent = votes + ' votes';
+                document.getElementById('tool1').classList.add('selected');
+                
+                // Update stats
+                votesCount++;
+                battleScore += 15;
+                votesCountEl.textContent = votesCount;
+                battleScoreEl.textContent = battleScore;
+                hasVoted = true;
+                
+                // Show battle result
+                setTimeout(function() {
+                    const battle = battleData[currentBattleIndex];
+                    battleWinner.textContent = battle.tool1.name + ' wins this round!';
+                    battleResult.style.display = 'block';
+                    nextBattleBtn.style.display = 'inline-block';
+                    battlesWitnessed++;
+                    battlesCountEl.textContent = battlesWitnessed;
+                }, 1000);
+            });
+            
+            // Tool 2 vote button click handler
+            tool2VoteBtn.addEventListener('click', function() {
+                if (hasVoted) return;
+                
+                // Generate random vote count (1-5)
+                const votes = Math.floor(Math.random() * 5) + 2;
+                tool2Vote.textContent = votes + ' votes';
+                document.getElementById('tool2').classList.add('selected');
+                
+                // Update stats
+                votesCount++;
+                battleScore += 15;
+                votesCountEl.textContent = votesCount;
+                battleScoreEl.textContent = battleScore;
+                hasVoted = true;
+                
+                // Show battle result
+                setTimeout(function() {
+                    const battle = battleData[currentBattleIndex];
+                    battleWinner.textContent = battle.tool2.name + ' wins this round!';
+                    battleResult.style.display = 'block';
+                    nextBattleBtn.style.display = 'inline-block';
+                    battlesWitnessed++;
+                    battlesCountEl.textContent = battlesWitnessed;
+                }, 1000);
+            });
+            
+            // Next battle button click handler
+            nextBattleBtn.addEventListener('click', function() {
+                currentBattleIndex = (currentBattleIndex + 1) % battleData.length;
+                updateBattle();
+                battleScore += 10;
+                battleScoreEl.textContent = battleScore;
+                
+                // Add some animation
+                const battleContainer = document.querySelector('.current-battle');
+                battleContainer.style.opacity = '0';
+                setTimeout(function() {
+                    battleContainer.style.opacity = '1';
+                }, 300);
+            });
+            
+            // CTA button hover effect
+            const ctaButton = document.getElementById('enterArena');
+            ctaButton.addEventListener('mouseenter', function() {
+                this.textContent = 'FIGHT! FIGHT! FIGHT!';
+            });
+            
+            ctaButton.addEventListener('mouseleave', function() {
+                this.textContent = 'Enter The Arena';
+            });
+            
+            // "Try It Yourself" section handlers
+            const challengeClaudeBtn = document.getElementById('challenge-claude');
+            const challengeGptBtn = document.getElementById('challenge-gpt');
+            const promptInput = document.getElementById('challenge-prompt');
+            const loadingContainer = document.getElementById('loading-container');
+            const claudeResponse = document.getElementById('claude-response');
+            const gptResponse = document.getElementById('gpt-response');
+            const claudeOutput = document.getElementById('claude-output');
+            const gptOutput = document.getElementById('gpt-output');
+            const responseVoting = document.getElementById('response-voting');
+            
+            // Claude challenge button
+            challengeClaudeBtn.addEventListener('click', function() {
+                const prompt = promptInput.value.trim();
+                if (!prompt) return;
+                
+                // Show loading
+                loadingContainer.style.display = 'block';
+                claudeResponse.style.display = 'none';
+                
+                // Simulate AI thinking
+                setTimeout(function() {
+                    // Hide loading
+                    loadingContainer.style.display = 'none';
+                    
+                    // Generate fake response
+                    let response = generateClaudeResponse(prompt);
+                    claudeOutput.textContent = response;
+                    claudeResponse.style.display = 'block';
+                    
+                    // Show voting if both have responded
+                    if (gptResponse.style.display !== 'none') {
+                        responseVoting.style.display = 'block';
+                    }
+                    
+                    // Add points
+                    battleScore += 25;
+                    battleScoreEl.textContent = battleScore;
+                }, 2000);
+            });
+            
+            // GPT challenge button
+            challengeGptBtn.addEventListener('click', function() {
+                const prompt = promptInput.value.trim();
+                if (!prompt) return;
+                
+                // Show loading
+                loadingContainer.style.display = 'block';
+                gptResponse.style.display = 'none';
+                
+                // Simulate AI thinking
+                setTimeout(function() {
+                    // Hide loading
+                    loadingContainer.style.display = 'none';
+                    
+                    // Generate fake response
+                    let response = generateGptResponse(prompt);
+                    gptOutput.textContent = response;
+                    gptResponse.style.display = 'block';
+                    
+                    // Show voting if both have responded
+                    if (claudeResponse.style.display !== 'none') {
+                        responseVoting.style.display = 'block';
+                    }
+                    
+                    // Add points
+                    battleScore += 25;
+                    battleScoreEl.textContent = battleScore;
+                }, 1500);
+            });
+            
+            // Response voting buttons
+            document.getElementById('vote-claude').addEventListener('click', function() {
+                alert('You voted for Claude! Claude appreciates your discerning taste.');
+                responseVoting.style.display = 'none';
+                battleScore += 15;
+                battleScoreEl.textContent = battleScore;
+            });
+            
+            document.getElementById('vote-gpt').addEventListener('click', function() {
+                alert('You voted for GPT! GPT would thank you if it had feelings.');
+                responseVoting.style.display = 'none';
+                battleScore += 15;
+                battleScoreEl.textContent = battleScore;
+            });
+            
+            // Helper function to generate Claude-like responses
+            function generateClaudeResponse(prompt) {
+                // Very simplified response generation
+                if (prompt.toLowerCase().includes('explain') || prompt.toLowerCase().includes('what is')) {
+                    return "I'd be happy to explain this in a thoughtful way.\n\nThe concept you're asking about has several dimensions worth exploring. First, we should consider the fundamental principles at play. These include [detailed explanation with careful nuance].\n\nIt's important to note that there are multiple perspectives on this topic. Some experts argue [position A], while others maintain [position B].\n\nTo fully understand this, we might also consider a helpful analogy: [thoughtful analogy that clarifies the concept].\n\nI hope this explanation helps provide clarity while acknowledging the complexity of the topic.";
+                } else if (prompt.toLowerCase().includes('generate') || prompt.toLowerCase().includes('write')) {
+                    return "I'd be glad to write that for you. Here's my attempt:\n\n[Carefully crafted content with attention to structure, tone, and nuance. The writing shows consideration of multiple perspectives and avoids overly simplistic claims.]\n\nI've tried to balance clarity with depth in this response. Would you like me to elaborate on any particular aspect?";
+                } else {
+                    return "Thank you for your prompt. I'll address this thoughtfully.\n\n[Detailed, nuanced response that shows careful reasoning and acknowledges limitations of my knowledge where appropriate.]\n\nI hope this addresses your query. If you'd like me to explore any aspect in more depth, please let me know.";
+                }
+            }
+            
+            // Helper function to generate GPT-like responses
+            function generateGptResponse(prompt) {
+                // Very simplified response generation
+                if (prompt.toLowerCase().includes('explain') || prompt.toLowerCase().includes('what is')) {
+                    return "Here's a comprehensive explanation:\n\n[Clear, direct explanation with multiple examples and analogies. Response includes some technical details and references.]\n\nTo break this down further:\n- Point 1: [detailed elaboration]  \n- Point 2: [detailed elaboration]  \n- Point 3: [detailed elaboration]  \n\nFun fact: [interesting related information that shows breadth of knowledge]";
+                } else if (prompt.toLowerCase().includes('generate') || prompt.toLowerCase().includes('write')) {
+                    return "I've generated this content for you:\n\n[Highly creative and detailed content that directly addresses the request. Content shows flexibility and adaptability to different styles.]\n\nThis should serve your needs, but I can adjust the tone, length, or approach if you'd prefer something different.";
+                } else {
+                    return "I'd be happy to help with that!\n\n[Fast, confident response that provides a direct answer, with additional helpful context and suggestions for related information.]\n\nIs there anything specific about this topic you'd like me to expand on?";
+                }
+            }
+            
+            // Newsletter form submission
+            const newsletterForm = document.getElementById('newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const message = document.getElementById('newsletter-message');
+                message.textContent = 'You\'re in! Prepare for exclusive AI battles and insider content.';
+                message.style.display = 'block';
+                message.className = 'text-success';
+                this.reset();
+                battleScore += 50;
+                battleScoreEl.textContent = battleScore;
+            });
+            
+            // Random AI facts
+            const facts = [
+                "GPT-4o once wrote a love letter so convincing that the recipient proposed to their computer.",
+                "Claude helped a philosophy professor debug a logical fallacy in their own doctoral thesis.",
+                "Midjourney v6 generated art that was accidentally featured in a major gallery's exhibition.",
+                "OpenAI Sora created a 60-second commercial that made test audiences cry with emotion.",
+                "Gemini Ultra completed a crossword puzzle faster than the human who designed it.",
+                "GitHub Copilot detected and fixed a security vulnerability that had been in code for 7 years.",
+                "A mathematician used Claude 3.7 to discover a new prime number pattern.",
+                "DALL-E once created an optical illusion so effective that neuroscientists are studying it."
+            ];
+            
+            // Show random fact every 20 seconds
+            function showRandomFact() {
+                const randomFact = facts[Math.floor(Math.random() * facts.length)];
+                const factContainer = document.getElementById('random-fact-container');
+                
+                // Create and append new fact
+                const factElement = document.createElement('div');
+                factElement.className = 'random-fact';
+                factElement.textContent = '🤖 AI Fact: ' + randomFact;
+                
+                // Remove old facts if there are more than 1
+                while (factContainer.children.length > 0) {
+                    factContainer.removeChild(factContainer.children[0]);
+                }
+                
+                factContainer.appendChild(factElement);
+            }
+            
+            // Show a fact immediately
+            showRandomFact();
+            
+            // Then show new facts periodically
+            setInterval(showRandomFact, 20000);
         });
     </script>
 </body>
