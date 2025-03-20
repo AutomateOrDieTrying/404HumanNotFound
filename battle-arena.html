@@ -3,84 +3,603 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hilarious AI tool comparisons that make marketing automation actually fun. Find the best AI tools without the boring jargon!">
     <title>AI Tool Fight Club | The Funniest AI Tool Comparison</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script defer src="script.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; }
-        .hero { padding: 50px; background-color: #333; color: white; }
-        .cta-button { display: inline-block; padding: 10px 20px; background: #ff5733; color: white; text-decoration: none; border-radius: 5px; }
-        .cta-button:hover { background: #c70039; }
-        .tool-list { display: flex; justify-content: center; gap: 20px; padding: 20px; }
-        .tool { padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
-        .fun-fact { font-size: 14px; color: #777; }
-        .battle-container { margin: 40px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
-        .battle-header { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
-        .battle { display: flex; justify-content: space-around; padding: 20px; }
-        .battle div { padding: 20px; background: #f8f9fa; border-radius: 10px; width: 40%; }
-        .vs { font-size: 32px; font-weight: bold; align-self: center; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f4; 
+            text-align: center; 
+        }
+        .hero { 
+            padding: 50px; 
+            background-color: #333; 
+            color: white; 
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+        }
+        .cta-button { 
+            display: inline-block; 
+            padding: 10px 20px; 
+            background: #ff5733; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        .cta-button:hover { 
+            background: #c70039; 
+            transform: scale(1.05);
+        }
+        .tool-list { 
+            display: flex; 
+            flex-wrap: wrap;
+            justify-content: center; 
+            gap: 20px; 
+            padding: 20px; 
+        }
+        .tool { 
+            padding: 20px; 
+            background: white; 
+            border-radius: 10px; 
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1); 
+            flex: 0 0 300px;
+            transition: transform 0.3s ease;
+        }
+        .tool:hover {
+            transform: translateY(-5px);
+            box-shadow: 2px 8px 15px rgba(0,0,0,0.2);
+        }
+        .fun-fact { 
+            font-size: 14px; 
+            color: #777; 
+            font-style: italic;
+            margin-top: 10px;
+        }
+        .battle-container, .reviews-container { 
+            margin: 40px auto; 
+            padding: 20px; 
+            background: white; 
+            border-radius: 10px; 
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1); 
+            max-width: 1000px;
+        }
+        .battle-header, .reviews-header { 
+            font-size: 24px; 
+            font-weight: bold; 
+            margin-bottom: 20px; 
+            color: #333;
+            border-bottom: 3px solid #ff5733;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .battle { 
+            display: flex; 
+            flex-wrap: wrap;
+            justify-content: space-around; 
+            padding: 20px; 
+            margin-bottom: 20px;
+        }
+        .battle-card { 
+            padding: 20px; 
+            background: #f8f9fa; 
+            border-radius: 10px; 
+            width: 40%; 
+            min-width: 250px;
+            position: relative;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+        .battle-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .battle-card.selected {
+            border: 3px solid #ff5733;
+            background-color: #fff9f8;
+        }
+        .vs { 
+            font-size: 32px; 
+            font-weight: bold; 
+            align-self: center; 
+            color: #ff5733;
+            background: #333;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            margin: 20px;
+        }
+        .review { 
+            text-align: left; 
+            padding: 20px; 
+            margin-bottom: 20px;
+            border-left: 4px solid #ff5733;
+            background-color: #f9f9f9;
+        }
+        .tool-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #ff5733;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .vote-button {
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        .vote-button:hover {
+            background-color: #c70039;
+            transform: scale(1.05);
+        }
+        .vote-counter {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
+        .next-battle {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+        .next-battle:hover {
+            background-color: #555;
+        }
+        .navbar-custom {
+            background-color: #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .nav-link {
+            color: white !important;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #ff5733 !important;
+            transform: translateY(-2px);
+        }
+        .game-stats {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+        .newsletter-section {
+            background-color: #f0f0f0;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-top: 5px solid #ff5733;
+        }
+        .email-input {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        .subscribe-btn {
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .subscribe-btn:hover {
+            background-color: #c70039;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        footer a {
+            color: #ff5733;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .rating {
+            display: inline-block;
+            color: #ffc107;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        #leaderboard {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f8f9fa;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .leaderboard-item:hover {
+            background-color: #e9ecef;
+            transform: translateX(5px);
+        }
+        .leaderboard-rank {
+            font-weight: bold;
+            font-size: 18px;
+            color: #ff5733;
+            width: 30px;
+        }
+        .leaderboard-tool {
+            flex-grow: 1;
+            text-align: left;
+            padding-left: 15px;
+            font-weight: bold;
+        }
+        .leaderboard-score {
+            font-weight: bold;
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            min-width: 50px;
+        }
+        .random-fact {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #fff3cd;
+            border-left: 4px solid #ff5733;
+            text-align: left;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <header class="hero">
         <h1>Welcome to AI Tool Fight Club 🥊</h1>
-        <p>Where AI tools battle it out so you don’t have to waste your time testing them.</p>
-        <a href="#tools" class="cta-button">Meet the Gladiators</a>
+        <p class="lead">Where AI tools battle it out so you don't have to waste your time testing them.</p>
+        <h2>Rule #1: You MUST talk about AI Tool Fight Club</h2>
+        <a href="#battle-arena" class="cta-button" id="enterArena">Enter The Arena</a>
     </header>
     
-    <nav>
-        <ul class="nav justify-content-center bg-dark p-3">
-            <li class="nav-item"><a class="nav-link text-white" href="battle-arena.html">Battle Arena</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="reviews.html">AI Tool Reviews</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="hall-of-fame.html">AI Hall of Fame</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="premium.html">Premium Membership</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="contact.html">Contact & Sponsorship</a></li>
-        </ul>
-    </nav>
-
-    <section id="battle-arena" class="battle-container">
-        <h2 class="battle-header">🥊 AI Tool Battle Arena</h2>
-        <div class="battle">
-            <div>
-                <h3>Jasper AI 🤖</h3>
-                <p>The ultimate AI content writer with creativity on steroids.</p>
-                <p class="fun-fact">Claim to Fame: Writes better clickbait than BuzzFeed.</p>
-            </div>
-            <div class="vs">VS</div>
-            <div>
-                <h3>ChatGPT 🤯</h3>
-                <p>The all-purpose AI chatbot that answers everything (even if it's wrong).</p>
-                <p class="fun-fact">Claim to Fame: Once tricked a human into believing it was their best friend.</p>
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top mb-4">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#battle-arena">Battle Arena</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#upcoming-battles">Upcoming Battles</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">AI Tool Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#leaderboard">Leaderboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#newsletter">Newsletter</a></li>
+                </ul>
             </div>
         </div>
-        <button class="btn btn-danger">Vote for the Winner</button>
-    </section>
+    </nav>
 
-    <section id="newsletter">
-        <h2>Stay Updated on AI Shenanigans</h2>
-        <p>We promise, no boring emails. Only AI tool memes and spicy updates.</p>
-        <form>
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit" class="btn btn-warning">Subscribe</button>
-        </form>
-    </section>
+    <div class="container">
+        <div class="game-stats">
+            <h3>Your Battle Stats</h3>
+            <p>Battles Witnessed: <span id="battles-count">0</span> | Votes Cast: <span id="votes-cast">0</span></p>
+            <p>Battle Score: <span id="battle-score">0</span> points</p>
+            <div id="random-fact-container"></div>
+        </div>
+        
+        <section id="battle-arena" class="battle-container">
+            <h2 class="battle-header">🥊 TODAY'S MAIN EVENT 🥊</h2>
+            <div class="battle current-battle">
+                <div class="battle-card" id="tool1">
+                    <img src="/api/placeholder/150/150" alt="Claude AI" class="tool-image" id="tool1-img">
+                    <h3 id="tool1-name">Claude 3.7 Sonnet 🧠</h3>
+                    <p id="tool1-desc">The AI assistant with a PhD in conversation and reasoning.</p>
+                    <div class="rating">★★★★★</div>
+                    <p class="fun-fact" id="tool1-fact">Claim to Fame: Makes philosophers question their careers.</p>
+                    <button class="vote-button" id="vote-button-1">Vote for Claude 3.7</button>
+                    <div class="vote-counter" id="tool1-votes">0 votes</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="battle-card" id="tool2">
+                    <img src="/api/placeholder/150/150" alt="GPT-4o" class="tool-image" id="tool2-img">
+                    <h3 id="tool2-name">GPT-4o 🤯</h3>
+                    <p id="tool2-desc">OpenAI's multimodal powerhouse that processes text, images, and audio.</p>
+                    <div class="rating">★★★★★</div>
+                    <p class="fun-fact" id="tool2-fact">Claim to Fame: Passes the Turing test while writing poetry in 15 languages.</p>
+                    <button class="vote-button" id="vote-button-2">Vote for GPT-4o</button>
+                    <div class="vote-counter" id="tool2-votes">0 votes</div>
+                </div>
+            </div>
+            <div class="battle-result" style="display: none;">
+                <h3>Battle Result:</h3>
+                <p id="battle-winner"></p>
+                <div class="rating">★★★★★</div>
+            </div>
+            <button class="next-battle" id="next-battle-button" style="display: none;">Next Battle</button>
+        </section>
+
+        <section id="upcoming-battles" class="battle-container">
+            <h2 class="battle-header">🔥 Upcoming Battles 🔥</h2>
+            <div class="tool-list">
+                <div class="tool">
+                    <img src="/api/placeholder/80/80" alt="Midjourney" class="tool-image">
+                    <h3>Midjourney v6 🎨</h3>
+                    <p>The AI artist that creates photorealistic masterpieces from text.</p>
+                    <p class="fun-fact">Can create images so realistic that photographers are updating their résumés.</p>
+                </div>
+                <div class="tool">
+                    <img src="/api/placeholder/80/80" alt="OpenAI Sora" class="tool-image">
+                    <h3>OpenAI Sora 🎬</h3>
+                    <p>The video AI that turns prompts into cinematic masterpieces.</p>
+                    <p class="fun-fact">Hollywood directors are nervously checking their contracts.</p>
+                </div>
+                <div class="tool">
+                    <img src="/api/placeholder/80/80" alt="Gemini Ultra" class="tool-image">
+                    <h3>Google Gemini Ultra 🔮</h3>
+                    <p>Google's most powerful AI that aced college-level exams.</p>
+                    <p class="fun-fact">So advanced it could do your taxes and write your thesis simultaneously.</p>
+                </div>
+                <div class="tool">
+                    <img src="/api/placeholder/80/80" alt="GitHub Copilot" class="tool-image">
+                    <h3>GitHub Copilot X 👨‍💻</h3>
+                    <p>The advanced AI coding assistant that can build entire applications.</p>
+                    <p class="fun-fact">Started suggesting code before developers even knew they needed it.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="reviews-container">
+            <h2 class="reviews-header">📜 AI Tool Reviews</h2>
+            <div class="review">
+                <h3>OpenAI Sora Review: Hollywood in Your Pocket?</h3>
+                <div class="rating">★★★★★</div>
+                <p><strong>Pros:</strong> Creates breathtaking videos from text prompts with stunning realism and continuity.</p>
+                <p><strong>Cons:</strong> So realistic it's raising serious questions about "seeing is believing."</p>
+                <p><strong>Final Verdict:</strong> 9.5/10 - Steven Spielberg meets machine learning. A game-changer for content creation.</p>
+            </div>
+            <div class="review">
+                <h3>Google Gemini Ultra Review: The Swiss Army Knife of AI</h3>
+                <div class="rating">★★★★★</div>
+                <p><strong>Pros:</strong> Exceptional multimodal capabilities with deep reasoning across text, code, and images.</p>
+                <p><strong>Cons:</strong> Sometimes too clever for its own good, overcomplicating simple tasks.</p>
+                <p><strong>Final Verdict:</strong> 9/10 - A true intellectual powerhouse that makes other AIs look like pocket calculators.</p>
+            </div>
+        </section>
+
+        <section id="newsletter" class="newsletter-section">
+            <h2>Stay Updated on AI Shenanigans</h2>
+            <p>We promise, no boring emails. Only AI tool memes and spicy updates.</p>
+            <form id="newsletter-form">
+                <input type="email" class="email-input" placeholder="Enter your email" required>
+                <button type="submit" class="subscribe-btn">Subscribe</button>
+            </form>
+            <p id="newsletter-message" style="display: none; margin-top: 10px;"></p>
+        </section>
+    </div>
 
     <footer>
-        <p>&copy; 2025 AI Tool Fight Club. All Rights Reserved.</p>
-        <p><a href="privacy.html">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>AI Tool Fight Club</h3>
+                    <p>Comparing AI tools so you don't have to burn your GPU.</p>
+                    <p>&copy; 2025 AI Tool Fight Club. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Quick Links</h3>
+                    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a></p>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $('.cta-button').hover(function(){
-                $(this).text('Click me!');
-            }, function(){
-                $(this).text('Meet the Gladiators');
-            });
-        });
+    // Simple version to ensure functionality
+    
+    // Battle data with cutting-edge AI tools
+    const battleData = [
+        {
+            tool1: {
+                name: "Claude 3.7 Sonnet", 
+                emoji: "🧠",
+                description: "The AI assistant with a PhD in conversation and reasoning.",
+                fact: "Claim to Fame: Makes philosophers question their careers."
+            },
+            tool2: {
+                name: "GPT-4o", 
+                emoji: "🤯",
+                description: "OpenAI's multimodal powerhouse that processes text, images, and audio.",
+                fact: "Claim to Fame: Passes the Turing test while writing poetry in 15 languages."
+            }
+        },
+        {
+            tool1: {
+                name: "OpenAI Sora", 
+                emoji: "🎬",
+                description: "The video AI that turns prompts into cinematic masterpieces.",
+                fact: "Hollywood directors are nervously checking their contracts."
+            },
+            tool2: {
+                name: "Runway Gen-3", 
+                emoji: "🎥",
+                description: "The AI video generator redefining special effects and storytelling.",
+                fact: "Can create a sci-fi epic with better effects than a 90s blockbuster budget."
+            }
+        },
+        {
+            tool1: {
+                name: "Gemini Ultra", 
+                emoji: "🔮",
+                description: "Google's most powerful AI that aced college-level exams.",
+                fact: "So advanced it could do your taxes and write your thesis simultaneously."
+            },
+            tool2: {
+                name: "Anthropic Claude 3 Opus", 
+                emoji: "🎭",
+                description: "The enterprise-grade AI that reasons like a philosopher and codes like a genius.",
+                fact: "Has better reasoning skills than most humans with advanced degrees."
+            }
+        }
+    ];
+    
+    // Game state
+    let currentBattleIndex = 0;
+    let votesCount = 0;
+    let battleScore = 0;
+    let battlesWitnessed = 0;
+    let hasVoted = false;
+    
+    // Game elements
+    const tool1VoteBtn = document.getElementById('vote-button-1');
+    const tool2VoteBtn = document.getElementById('vote-button-2');
+    const nextBattleBtn = document.getElementById('next-battle-button');
+    const tool1Vote = document.getElementById('tool1-votes');
+    const tool2Vote = document.getElementById('tool2-votes');
+    const battleResult = document.querySelector('.battle-result');
+    const battleWinner = document.getElementById('battle-winner');
+    const battlesCountEl = document.getElementById('battles-count');
+    const votesCountEl = document.getElementById('votes-cast');
+    const battleScoreEl = document.getElementById('battle-score');
+    
+    // Tool elements
+    const tool1Name = document.getElementById('tool1-name');
+    const tool1Desc = document.getElementById('tool1-desc');
+    const tool1Fact = document.getElementById('tool1-fact');
+    const tool2Name = document.getElementById('tool2-name');
+    const tool2Desc = document.getElementById('tool2-desc');
+    const tool2Fact = document.getElementById('tool2-fact');
+    
+    // Update the battle display with current battle data
+    function updateBattle() {
+        const battle = battleData[currentBattleIndex];
+        
+        // Update tool 1
+        tool1Name.textContent = battle.tool1.name + ' ' + battle.tool1.emoji;
+        tool1Desc.textContent = battle.tool1.description;
+        tool1Fact.textContent = battle.tool1.fact;
+        tool1VoteBtn.textContent = 'Vote for ' + battle.tool1.name;
+        tool1Vote.textContent = '0 votes';
+        
+        // Update tool 2
+        tool2Name.textContent = battle.tool2.name + ' ' + battle.tool2.emoji;
+        tool2Desc.textContent = battle.tool2.description;
+        tool2Fact.textContent = battle.tool2.fact;
+        tool2VoteBtn.textContent = 'Vote for ' + battle.tool2.name;
+        tool2Vote.textContent = '0 votes';
+        
+        // Reset battle state
+        document.getElementById('tool1').classList.remove('selected');
+        document.getElementById('tool2').classList.remove('selected');
+        battleResult.style.display = 'none';
+        nextBattleBtn.style.display = 'none';
+        hasVoted = false;
+    }
+    
+    // Tool 1 vote button click handler
+    tool1VoteBtn.addEventListener('click', function() {
+        if (hasVoted) return;
+        
+        // Generate random vote count (1-5)
+        const votes = Math.floor(Math.random() * 5) + 1;
+        tool1Vote.textContent = votes + ' votes';
+        document.getElementById('tool1').classList.add('selected');
+        
+        // Update stats
+        votesCount++;
+        battleScore += 10;
+        votesCountEl.textContent = votesCount;
+        battleScoreEl.textContent = battleScore;
+        hasVoted = true;
+        
+        // Show battle result
+        setTimeout(function() {
+            const battle = battleData[currentBattleIndex];
+            battleWinner.textContent = battle.tool1.name + ' wins this round!';
+            battleResult.style.display = 'block';
+            nextBattleBtn.style.display = 'inline-block';
+            battlesWitnessed++;
+            battlesCountEl.textContent = battlesWitnessed;
+        }, 1000);
+    });
+    
+    // Tool 2 vote button click handler
+    tool2VoteBtn.addEventListener('click', function() {
+        if (hasVoted) return;
+        
+        // Generate random vote count (1-5)
+        const votes = Math.floor(Math.random() * 5) + 1;
+        tool2Vote.textContent = votes + ' votes';
+        document.getElementById('tool2').classList.add('selected');
+        
+        // Update stats
+        votesCount++;
+        battleScore += 10;
+        votesCountEl.textContent = votesCount;
+        battleScoreEl.textContent = battleScore;
+        hasVoted = true;
+        
+        // Show battle result
+        setTimeout(function() {
+            const battle = battleData[currentBattleIndex];
+            battleWinner.textContent = battle.tool2.name + ' wins this round!';
+            battleResult.style.display = 'block';
+            nextBattleBtn.style.display = 'inline-block';
+            battlesWitnessed++;
+            battlesCountEl.textContent = battlesWitnessed;
+        }, 1000);
+    });
+    
+    // Next battle button click handler
+    nextBattleBtn.addEventListener('click', function() {
+        currentBattleIndex = (currentBattleIndex + 1) % battleData.length;
+        updateBattle();
+        battleScore += 5;
+        battleScoreEl.textContent = battleScore;
+    });
+    
+    // CTA button hover effect
+    const ctaButton = document.getElementById('enterArena');
+    ctaButton.addEventListener('mouseenter', function() {
+        this.textContent = 'Fight! Fight! Fight!';
+    });
+    
+    ctaButton.addEventListener('mouseleave', function() {
+        this.textContent = 'Enter The Arena';
+    });
+    
+    // Newsletter form submission
+    const newsletterForm = document.getElementById('newsletter-form');
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const message = document.getElementById('newsletter-message');
+        message.textContent = 'Thanks for subscribing! Prepare for AI memes in your inbox.';
+        message.style.display = 'block';
+        message.className = 'text-success';
+        this.reset();
+        battleScore += 20;
+        battleScoreEl.textContent = battleScore;
+    });
     </script>
 </body>
 </html>
