@@ -6,25 +6,56 @@
     <meta name="description" content="Hilarious AI tool comparisons that make marketing automation actually fun. Find the best AI tools without the boring jargon!">
     <title>AI Tool Fight Club | The Funniest AI Tool Comparison</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Load jQuery before using it -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8373330648701304"
      crossorigin="anonymous"></script>
-    <script defer src="script.js"></script>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; }
         .hero { padding: 50px; background-color: #333; color: white; }
         .cta-button { display: inline-block; padding: 10px 20px; background: #ff5733; color: white; text-decoration: none; border-radius: 5px; }
         .cta-button:hover { background: #c70039; }
-        .tool-list { display: flex; justify-content: center; gap: 20px; padding: 20px; }
-        .tool { padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+        .tool-list { display: flex; justify-content: center; gap: 20px; padding: 20px; flex-wrap: wrap; }
+        .tool { padding: 20px; background: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); width: 300px; }
         .fun-fact { font-size: 14px; color: #777; }
+        
+        /* Modal styles */
+        .demo-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
+        .modal-content { background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 10px; }
+        .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-modal:hover { color: black; }
+        
+        /* Tool Demo Styles */
+        .tool-demo { padding: 20px; }
+        .jasper-demo input, .jasper-demo select, .jasper-demo textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .jasper-demo button { background-color: #4e73df; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+        .jasper-output { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 15px; text-align: left; }
+        
+        .surfer-demo .keyword-input { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .surfer-demo button { background-color: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+        .keyword-results { margin-top: 15px; text-align: left; }
+        .keyword-item { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #eee; }
+        .difficulty { width: 100px; height: 10px; background-color: #e9ecef; border-radius: 5px; overflow: hidden; }
+        .difficulty-fill { height: 100%; background-color: #28a745; }
+        
+        .adzooma-demo .ad-form { margin-bottom: 20px; }
+        .adzooma-demo input, .adzooma-demo select { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .adzooma-demo button { background-color: #dc3545; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+        .ad-preview { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 15px; text-align: left; }
+        .ad-metrics { display: flex; justify-content: space-around; margin-top: 15px; }
+        .metric { text-align: center; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #dc3545; }
+        
+        /* Cookie banner */
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #333; color: white; padding: 10px; text-align: center; }
+        .cookie-banner button { background: #ff5733; color: white; border: none; padding: 5px 10px; margin: 0 5px; cursor: pointer; }
     </style>
 </head>
 <body>
     <header class="hero">
         <h1>Welcome to AI Tool Fight Club 🥊</h1>
-        <p>Where AI tools battle it out so you don’t have to waste your time testing them.</p>
+        <p>Where AI tools battle it out so you don't have to waste your time testing them.</p>
         <a href="#tools" class="cta-button">Meet the Gladiators</a>
     </header>
     
@@ -45,22 +76,139 @@
                 <h3>Jasper AI 🤖</h3>
                 <p>Writes better than your intern... and never asks for coffee breaks.</p>
                 <p class="fun-fact">Fun Fact: Jasper once wrote a love letter so good, it got proposed to.</p>
-                <a href="#" class="btn btn-primary">Try Jasper AI</a>
+                <a href="#" class="btn btn-primary demo-btn" data-tool="jasper">Try Jasper AI</a>
             </div>
             <div class="tool">
                 <h3>Surfer SEO 🌊</h3>
                 <p>Finds keywords faster than your boss can say "optimize it."</p>
                 <p class="fun-fact">Fun Fact: Google once asked Surfer SEO for ranking advice.</p>
-                <a href="#" class="btn btn-success">Get Surfer SEO</a>
+                <a href="#" class="btn btn-success demo-btn" data-tool="surfer">Get Surfer SEO</a>
             </div>
             <div class="tool">
                 <h3>Adzooma 🚀</h3>
                 <p>Manages ads so well, Facebook actually likes it.</p>
                 <p class="fun-fact">Fun Fact: Adzooma once lowered an ad budget... and increased ROI.</p>
-                <a href="#" class="btn btn-danger">Start with Adzooma</a>
+                <a href="#" class="btn btn-danger demo-btn" data-tool="adzooma">Start with Adzooma</a>
             </div>
         </div>
     </section>
+
+    <!-- Jasper AI Demo Modal -->
+    <div id="jasper-modal" class="demo-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Jasper AI Demo</h2>
+            <div class="tool-demo jasper-demo">
+                <h4>Generate Marketing Copy</h4>
+                <form id="jasper-form">
+                    <div class="mb-3">
+                        <label for="content-type" class="form-label">Content Type:</label>
+                        <select id="content-type" class="form-select">
+                            <option value="social">Social Media Post</option>
+                            <option value="email">Email Subject Line</option>
+                            <option value="blog">Blog Introduction</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tone" class="form-label">Tone:</label>
+                        <select id="tone" class="form-select">
+                            <option value="professional">Professional</option>
+                            <option value="casual">Casual</option>
+                            <option value="humorous">Humorous</option>
+                            <option value="persuasive">Persuasive</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product" class="form-label">Product/Service:</label>
+                        <input type="text" id="product" class="form-control" placeholder="e.g., Fitness App, Coffee Subscription">
+                    </div>
+                    <div class="mb-3">
+                        <label for="audience" class="form-label">Target Audience:</label>
+                        <input type="text" id="audience" class="form-control" placeholder="e.g., Fitness enthusiasts, Coffee lovers">
+                    </div>
+                    <button type="button" id="generate-jasper" class="btn btn-primary">Generate Content</button>
+                </form>
+                <div id="jasper-output" class="jasper-output mt-4" style="display: none;">
+                    <h5>Generated Content:</h5>
+                    <div id="generated-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Surfer SEO Demo Modal -->
+    <div id="surfer-modal" class="demo-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Surfer SEO Demo</h2>
+            <div class="tool-demo surfer-demo">
+                <h4>Keyword Research</h4>
+                <div class="mb-3">
+                    <label for="keyword-input" class="form-label">Enter your main keyword:</label>
+                    <input type="text" id="keyword-input" class="keyword-input form-control" placeholder="e.g., digital marketing strategies">
+                </div>
+                <button type="button" id="search-keywords" class="btn btn-success">Find Keywords</button>
+                <div id="keyword-results" class="keyword-results mt-4" style="display: none;">
+                    <h5>Related Keywords:</h5>
+                    <div class="keyword-list">
+                        <!-- Keywords will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adzooma Demo Modal -->
+    <div id="adzooma-modal" class="demo-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Adzooma Demo</h2>
+            <div class="tool-demo adzooma-demo">
+                <h4>Ad Campaign Optimizer</h4>
+                <div class="ad-form">
+                    <div class="mb-3">
+                        <label for="ad-platform" class="form-label">Platform:</label>
+                        <select id="ad-platform" class="form-select">
+                            <option value="facebook">Facebook Ads</option>
+                            <option value="google">Google Ads</option>
+                            <option value="instagram">Instagram Ads</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ad-headline" class="form-label">Ad Headline:</label>
+                        <input type="text" id="ad-headline" class="form-control" placeholder="e.g., Limited Time Offer!">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ad-description" class="form-label">Ad Description:</label>
+                        <input type="text" id="ad-description" class="form-control" placeholder="e.g., Get 20% off your first purchase.">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ad-budget" class="form-label">Daily Budget ($):</label>
+                        <input type="number" id="ad-budget" class="form-control" min="1" value="50">
+                    </div>
+                    <button type="button" id="optimize-ad" class="btn btn-danger">Optimize Campaign</button>
+                </div>
+                <div id="ad-preview" class="ad-preview mt-4" style="display: none;">
+                    <h5>Ad Preview:</h5>
+                    <div id="ad-content"></div>
+                    <div class="ad-metrics mt-3">
+                        <div class="metric">
+                            <div class="metric-label">Estimated CTR</div>
+                            <div class="metric-value" id="ctr-value">0%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Estimated CPC</div>
+                            <div class="metric-value" id="cpc-value">$0.00</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Optimization Score</div>
+                            <div class="metric-value" id="opt-score">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section id="newsletter">
         <h2>Stay Updated on AI Shenanigans</h2>
@@ -76,15 +224,6 @@
         <p><a href="privacy.html">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
     </footer>
 
-    <script>
-        $(document).ready(function(){
-            $('.cta-button').hover(function(){
-                $(this).text('Click me!');
-            }, function(){
-                $(this).text('Meet the Gladiators');
-            });
-        });
-    </script>
     <div class="cookie-banner" id="cookie-banner">
         <p>We use cookies to enhance your experience. No, not the chocolate chip kind.</p>
         <button onclick="acceptCookies()">Accept</button>
@@ -92,13 +231,205 @@
     </div>
 
     <script>
+        // Wait for document to be fully loaded before running jQuery code
+        document.addEventListener('DOMContentLoaded', function() {
+            // CTA button hover effect
+            $('.cta-button').hover(function(){
+                $(this).text('Click me!');
+            }, function(){
+                $(this).text('Meet the Gladiators');
+            });
+            
+            // Demo button click handlers
+            $('.demo-btn').click(function(e){
+                e.preventDefault();
+                const tool = $(this).data('tool');
+                $(`#${tool}-modal`).css('display', 'block');
+            });
+            
+            // Close modal when clicking on X
+            $('.close-modal').click(function(){
+                $(this).closest('.demo-modal').css('display', 'none');
+            });
+            
+            // Close modal when clicking outside of it
+            $(window).click(function(e){
+                if($(e.target).hasClass('demo-modal')){
+                    $('.demo-modal').css('display', 'none');
+                }
+            });
+            
+            // Jasper AI demo
+            $('#generate-jasper').click(function(){
+                const contentType = $('#content-type').val();
+                const tone = $('#tone').val();
+                const product = $('#product').val() || 'AI Marketing Tool';
+                const audience = $('#audience').val() || 'Marketing Professionals';
+                
+                let generatedContent = '';
+                
+                // Generate content based on inputs
+                if(contentType === 'social') {
+                    if(tone === 'humorous') {
+                        generatedContent = `Just found out my ${product} can do my job better than me. Should I be worried or just make it bring me coffee? 🤔 #AITakeover #${product.replace(/\s+/g, '')}`;
+                    } else if(tone === 'professional') {
+                        generatedContent = `Revolutionize your marketing strategy with our cutting-edge ${product}. Designed specifically for ${audience} who demand excellence. Learn more at our website. #MarketingInnovation`;
+                    } else if(tone === 'casual') {
+                        generatedContent = `Hey ${audience}! Check out how this ${product} saved us hours of work last week. Game-changer! 🙌 #WorkSmarter`;
+                    } else { // persuasive
+                        generatedContent = `Stop wasting time on manual marketing tasks! Our ${product} delivers 3x better results in half the time. ${audience} are already seeing the difference. Are you being left behind? #UpgradeNow`;
+                    }
+                } else if(contentType === 'email') {
+                    if(tone === 'humorous') {
+                        generatedContent = `This ${product} made our intern obsolete (but don't tell HR)`;
+                    } else if(tone === 'professional') {
+                        generatedContent = `Introducing: Revolutionary ${product} for Discerning ${audience}`;
+                    } else if(tone === 'casual') {
+                        generatedContent = `Hey! This ${product} is actually worth checking out...`;
+                    } else { // persuasive
+                        generatedContent = `Last chance: 50% off ${product} that's changing how ${audience} work`;
+                    }
+                } else { // blog
+                    if(tone === 'humorous') {
+                        generatedContent = `In a world where marketing feels like herding cats while juggling flaming torches, the ${product} swoops in like a caffeinated superhero. If you're among the exhausted ${audience} who've had enough of spreadsheet-induced eye twitches, this blog post might just save your sanity (and possibly your job).`;
+                    } else if(tone === 'professional') {
+                        generatedContent = `The landscape of digital marketing continues to evolve at an unprecedented pace. For ${audience} seeking to maintain a competitive edge, leveraging innovative solutions like the ${product} has become not merely advantageous but essential. This comprehensive analysis explores how this cutting-edge technology is transforming industry standards and delivering measurable results.`;
+                    } else if(tone === 'casual') {
+                        generatedContent = `Hey there! If you're like most ${audience} I talk to, you're probably spending way too much time on tasks that could be automated. That's where ${product} comes in – it's been a total game-changer for our team. Let me walk you through how it works and why we're such fans.`;
+                    } else { // persuasive
+                        generatedContent = `Imagine cutting your marketing workload in half while doubling your results. This isn't just a fantasy – it's exactly what ${audience} are experiencing with the revolutionary ${product}. In this post, we'll reveal the three proprietary features that make this tool indispensable and why your competitors hope you never discover it.`;
+                    }
+                }
+                
+                // Display the generated content
+                $('#generated-content').text(generatedContent);
+                $('#jasper-output').show();
+            });
+            
+            // Surfer SEO demo
+            $('#search-keywords').click(function(){
+                const mainKeyword = $('#keyword-input').val() || 'digital marketing';
+                const keywordResults = $('#keyword-results');
+                const keywordList = keywordResults.find('.keyword-list');
+                
+                // Clear previous results
+                keywordList.empty();
+                
+                // Generate fake keyword results based on input
+                const keywords = [
+                    { keyword: mainKeyword + ' strategies', volume: Math.floor(Math.random() * 5000) + 1000, difficulty: Math.random() * 100 },
+                    { keyword: 'best ' + mainKeyword + ' tools', volume: Math.floor(Math.random() * 3000) + 500, difficulty: Math.random() * 100 },
+                    { keyword: mainKeyword + ' for beginners', volume: Math.floor(Math.random() * 2000) + 300, difficulty: Math.random() * 100 },
+                    { keyword: 'how to learn ' + mainKeyword, volume: Math.floor(Math.random() * 1500) + 200, difficulty: Math.random() * 100 },
+                    { keyword: mainKeyword + ' courses', volume: Math.floor(Math.random() * 1000) + 100, difficulty: Math.random() * 100 },
+                    { keyword: mainKeyword + ' certification', volume: Math.floor(Math.random() * 800) + 50, difficulty: Math.random() * 100 },
+                    { keyword: mainKeyword + ' examples', volume: Math.floor(Math.random() * 700) + 30, difficulty: Math.random() * 100 }
+                ];
+                
+                // Add keywords to the list
+                keywords.forEach(item => {
+                    const difficultyLevel = Math.floor(item.difficulty);
+                    let difficultyColor = '#28a745'; // Green
+                    
+                    if(difficultyLevel > 70) {
+                        difficultyColor = '#dc3545'; // Red
+                    } else if(difficultyLevel > 40) {
+                        difficultyColor = '#ffc107'; // Yellow
+                    }
+                    
+                    const keywordItem = `
+                        <div class="keyword-item">
+                            <div>${item.keyword}</div>
+                            <div>Volume: ${item.volume}</div>
+                            <div>
+                                <div>Difficulty: ${difficultyLevel}%</div>
+                                <div class="difficulty">
+                                    <div class="difficulty-fill" style="width: ${difficultyLevel}%; background-color: ${difficultyColor};"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    keywordList.append(keywordItem);
+                });
+                
+                keywordResults.show();
+            });
+            
+            // Adzooma demo
+            $('#optimize-ad').click(function(){
+                const platform = $('#ad-platform').val();
+                const headline = $('#ad-headline').val() || 'Limited Time Offer!';
+                const description = $('#ad-description').val() || 'Get 20% off your first purchase.';
+                const budget = $('#ad-budget').val() || 50;
+                
+                let platformName = 'Facebook';
+                if(platform === 'google') platformName = 'Google';
+                if(platform === 'instagram') platformName = 'Instagram';
+                
+                // Generate ad preview
+                const adContent = `
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>${platformName} Ad Preview</strong>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">${headline}</h5>
+                            <p class="card-text">${description}</p>
+                            <button class="btn btn-sm btn-primary">Learn More</button>
+                        </div>
+                    </div>
+                `;
+                
+                $('#ad-content').html(adContent);
+                
+                // Calculate mock metrics based on inputs
+                const headlineLength = headline.length;
+                const descLength = description.length;
+                const budgetFactor = budget / 50;
+                
+                // CTR calculation - better for succinct headlines and reasonable budgets
+                let ctr = 2 + (Math.random() * 1.5);
+                if(headlineLength < 30) ctr += 0.8;
+                if(descLength > 80 && descLength < 140) ctr += 0.7;
+                if(budgetFactor > 1.5) ctr += 0.5;
+                ctr = Math.min(ctr, 7.5); // Cap at 7.5%
+                
+                // CPC calculation - better for targeted platforms and reasonable budgets
+                let cpc = 0.5 + (Math.random() * 0.3);
+                if(platform === 'google') cpc += 0.4;
+                if(budgetFactor > 2) cpc += 0.3;
+                cpc = Math.min(cpc, 2.5); // Cap at $2.50
+                
+                // Optimization score - combination of factors
+                let optScore = 65 + (Math.random() * 15);
+                if(headlineLength > 20 && headlineLength < 40) optScore += 5;
+                if(descLength > 60 && descLength < 120) optScore += 5;
+                if(headline.includes('!') || headline.includes('?')) optScore += 3;
+                if(description.includes('off') || description.includes('%')) optScore += 3;
+                optScore = Math.min(optScore, 98); // Cap at 98
+                
+                // Display metrics
+                $('#ctr-value').text(ctr.toFixed(1) + '%');
+                $('#cpc-value').text('$' + cpc.toFixed(2));
+                $('#opt-score').text(Math.round(optScore) + '/100');
+                
+                // Show the ad preview
+                $('#ad-preview').show();
+            });
+        });
+        
+        // Cookie functions - keep these outside the DOMContentLoaded event
         function acceptCookies() {
             document.getElementById("cookie-banner").style.display = "none";
             localStorage.setItem("cookiesAccepted", "true");
         }
+        
         function manageCookies() {
             alert("To review or delete your data, please visit the Contact page and submit a request.");
         }
+        
+        // Check cookies on page load
         document.addEventListener("DOMContentLoaded", function() {
             if (localStorage.getItem("cookiesAccepted")) {
                 document.getElementById("cookie-banner").style.display = "none";
